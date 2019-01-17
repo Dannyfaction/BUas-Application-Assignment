@@ -1,0 +1,28 @@
+Loop
+
+Can only spawn if
+
+Currentwave < total waves
+Elapsed Time > Wave Cooldown
+
+Enemies arent all spawned
+Elapsed time > waveDatas.timeBetweenSpawns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
