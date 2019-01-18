@@ -5,7 +5,7 @@
 class Ball
 {
 public:
-	Ball(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction, std::vector<Ball> &balls);
+	Ball(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction);
 	~Ball();
 
 	void Update(float deltaTime);
@@ -17,8 +17,6 @@ public:
 private:
 	sf::RectangleShape body;
 	sf::Vector2f direction;
-
-	std::vector<Ball> &balls;
 
 	float lifetime;
 	float maxLifetime;

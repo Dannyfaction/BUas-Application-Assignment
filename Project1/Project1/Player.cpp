@@ -13,7 +13,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 
 	body.setSize(sf::Vector2f(100.0f, 100.0f));
 	body.setOrigin(body.getSize() /2.0f);
-	body.setPosition(50.0f, 50.0f);
+	body.setPosition(0.0f, 0.0f);
 	body.setTexture(texture);
 
 	//Snowball Texture found with a google image search https://fr.kisspng.com/png-qt9l43/
@@ -79,7 +79,7 @@ void Player::Update(float deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) & shootTimer <= 0) {
 		shootTimer = shootCooldown;
 		//Spawn a ball with the following information; Texture, Size, Position, Direction and the <vector>balls reference so that it can remove itself
-		balls.push_back(Ball(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), DirectionFromAnimationRow(), balls));
+		balls.push_back(Ball(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), DirectionFromAnimationRow()));
 	}
 
 	//If in the previous frame you were walking and this frame you stopped walking, change to Idle animation

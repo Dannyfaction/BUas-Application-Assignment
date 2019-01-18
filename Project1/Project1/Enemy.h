@@ -1,9 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Character.h"
 #include "Collider.h"
 #include "Ball.h"
 
-class Enemy
+class Enemy: public Character
 {
 public:
 	Enemy(sf::Texture* texture, sf::Vector2u imageCount, sf::Vector2f position, int rotation,float shootCooldown, sf::RectangleShape &target);
@@ -14,7 +15,6 @@ public:
 	void SetTextureRotation(int rotation, sf::Texture* texture, sf::Vector2u imageCount);
 
 	float shootCooldown;
-	std::vector<Ball> balls;
 
 private:
 	sf::RectangleShape body;

@@ -22,6 +22,7 @@ int main()
 	sf::Texture playerTexture;
 	//Player texture and animations is an edited version of this Character https://opengameart.org/content/alternate-lpc-character-sprites-george
 	playerTexture.loadFromFile("Textures/George_Edited.png");
+
 	Player player(&playerTexture, sf::Vector2u(4, 8), 0.3f, 200.0f, 200.0f, 1.0f);
 
 	sf::Texture backgroundTexture;

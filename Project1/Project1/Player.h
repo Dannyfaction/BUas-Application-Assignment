@@ -1,11 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Character.h"
 #include "Animation.h"
 #include "Collider.h"
 #include "Ball.h"
 
 
-class Player
+class Player: public Character
 {
 public:
 	Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight, float shootCooldown);
@@ -19,7 +20,6 @@ public:
 	sf::Vector2f GetPosition() {return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
 
-	std::vector<Ball> balls;
 	sf::RectangleShape body;
 
 private:

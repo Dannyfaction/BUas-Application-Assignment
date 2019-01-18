@@ -2,7 +2,8 @@
 #include <iostream>
 
 
-Enemy::Enemy(sf::Texture* texture, sf::Vector2u imageCount, sf::Vector2f position, int rotation, float shootCooldown, sf::RectangleShape &target) : target(target)
+Enemy::Enemy(sf::Texture* texture, sf::Vector2u imageCount, sf::Vector2f position, int rotation, float shootCooldown, sf::RectangleShape &target) :
+	target(target)
 {
 	this->shootCooldown = shootCooldown;
 	this->rotation = rotation;
@@ -39,7 +40,7 @@ void Enemy::Update(float deltaTime)
 		targetDirection = sf::Vector2f(targetDirection.x / length, targetDirection.y / length);
 
 		//Spawn a snowball with the following information; Texture, Size, Position, Direction
-		balls.push_back(Ball(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), targetDirection, balls));
+		balls.push_back(Ball(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), targetDirection));
 
 		//Reset the cooldown timer
 		shootCooldownTimer = 0;

@@ -3,7 +3,7 @@
 #include "Player.h"
 
 
-Ball::Ball(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction, std::vector<Ball> &balls) : balls(balls)
+Ball::Ball(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction)
 {
 	body.setSize(size);
 	body.setOrigin(size / 2.0f);
@@ -29,7 +29,8 @@ void Ball::Update(float deltaTime)
 	if(lifetime > maxLifetime)
 	{
 		//Destroy the ball once its maximum lifetime has been reached
-		balls.erase(balls.begin());
+		//character.balls.erase(character.balls.begin());
+		//balls.erase(balls.begin());
 	}
 }
 
