@@ -32,16 +32,16 @@ void WaveManager::Update(float deltaTime)
 
 void WaveManager::SetWaveData()
 {
-	//WaveData holds the information of each wave (Amount of enemies, time between enemy spawns, snowball throw rate)
+	//WaveData holds the information of each wave (Amount of enemies, time between enemy spawns, health, snowball throw rate)
 
 	//Wave 1
-	waveDatas.push_back(WaveData(5, 3.0f, 3.0f));
+	waveDatas.push_back(WaveData(5, 3.0f, 100, 3.0f));
 
 	//Wave 2
-	waveDatas.push_back(WaveData(8, 2.0f, 2.5f));
+	waveDatas.push_back(WaveData(8, 2.0f, 200, 2.5f));
 
 	//Wave 3
-	waveDatas.push_back(WaveData(12, 1.0f, 2.0f));
+	waveDatas.push_back(WaveData(12, 1.0f, 300, 2.0f));
 }
 
 void WaveManager::SpawnWave()
@@ -76,6 +76,7 @@ void WaveManager::SpawnEnemy()
 	//Generate a random number between -300 and 300 which determines where exactly the enemy is spawned on one of the four sides
 	int randomEnemyPosition = std::rand() % 600 + -300;
 
+	int health = waveDatas[currentWave - 1].health;
 	//Randomize the shootcooldown a little bit so all the enemies won't shoot at the same time
 	float minimumEnemyShootCooldown = waveDatas[currentWave - 1].shootCooldown - 0.25f;
 	float maximumEnemyShootCooldown = waveDatas[currentWave - 1].shootCooldown + 0.25f;
@@ -98,6 +99,6 @@ void WaveManager::SpawnEnemy()
 		break;
 	}
 
-	//Spawn an enemy with the following information; Texture, Position, Direction, ShootCooldown and Target
-	spawnedEnemies.push_back(Enemy(&enemyTexture, sf::Vector2u(1,4), enemyPosition, randomEnemyDirection, randomizedEnemyShootCooldown, playerBody));
+	//Spawn an enemy with the following information; Texture, Position, Direction, health, ShootCooldown and ShootTarget
+	spawnedEnemies.push_back(Enemy(&enemyTexture, sf::Vector2u(1,4), enemyPosition, randomEnemyDirection, health, randomizedEnemyShootCooldown, playerBody));
 }

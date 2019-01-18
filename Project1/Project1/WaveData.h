@@ -4,10 +4,11 @@
 class WaveData
 {
 public:
-	WaveData(int amountOfEnemies, float timeBetweenSpawns, float shootCooldown);
+	WaveData(int amountOfEnemies, float timeBetweenSpawns, int health, float shootCooldown);
 	~WaveData();
 
 	int amountOfEnemies;
 	float timeBetweenSpawns;
+	int health;
 	float shootCooldown;
 };

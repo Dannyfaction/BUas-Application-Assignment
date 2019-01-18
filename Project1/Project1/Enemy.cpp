@@ -2,10 +2,13 @@
 #include <iostream>
 
 
-Enemy::Enemy(sf::Texture* texture, sf::Vector2u imageCount, sf::Vector2f position, int rotation, float shootCooldown, sf::RectangleShape &target) :
+Enemy::Enemy(sf::Texture* texture, sf::Vector2u imageCount, sf::Vector2f position, int rotation, int health, float shootCooldown, sf::RectangleShape &target) :
 	target(target)
 {
+	characterType = CharacterType::enemy;
+
 	this->shootCooldown = shootCooldown;
+	this->health = health;
 	this->rotation = rotation;
 
 	body.setSize(sf::Vector2f(100.0f, 100.0f));
@@ -49,6 +52,10 @@ void Enemy::Update(float deltaTime)
 	for (Ball& ball : balls) {
 		ball.Update(deltaTime);
 	}
+
+	if (health <= 0) {
+		RemoveSelf();
+	}
 }
 
 void Enemy::Draw(sf::RenderWindow& window)
@@ -88,4 +95,9 @@ void Enemy::SetTextureRotation(int rotation, sf::Texture* texture, sf::Vector2u 
 	uvRect.left = currentImage.x * uvRect.width;
 
 	body.setTextureRect(uvRect);
+}
+
+void Enemy::RemoveSelf()
+{
+	
 }

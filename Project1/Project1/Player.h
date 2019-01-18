@@ -9,7 +9,7 @@
 class Player: public Character
 {
 public:
-	Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight, float shootCooldown);
+	Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, int health, float shootCooldown);
 	~Player();
 
 	void Update(float deltaTime);
@@ -19,8 +19,6 @@ public:
 
 	sf::Vector2f GetPosition() {return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
-
-	sf::RectangleShape body;
 
 private:
 	sf::Texture ballTexture;
@@ -32,7 +30,6 @@ private:
 
 	sf::Vector2f velocity;
 	bool canJump;
-	float jumpHeight;
 
 	float shootCooldown;
 	float shootTimer;

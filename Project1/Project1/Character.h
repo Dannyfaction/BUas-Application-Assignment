@@ -8,6 +8,15 @@ public:
 	Character();
 	~Character();
 
+	CharacterType characterType;
+
+	int health;
+	sf::RectangleShape body;
 	std::vector<Ball> balls;
 };
 
+enum class CharacterType
+{
+	player,
+	enemy
+};

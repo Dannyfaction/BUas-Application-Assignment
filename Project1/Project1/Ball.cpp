@@ -5,6 +5,7 @@
 
 Ball::Ball(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction)
 {
+	this->characterType = characterType;
 	body.setSize(size);
 	body.setOrigin(size / 2.0f);
 	body.setPosition(position);
@@ -15,6 +16,7 @@ Ball::Ball(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::V
 	lifetime = 0.0f;
 	maxLifetime = 5.0f;
 	speed = 250.0f;
+	damage = 100.0f;
 }
 
 
@@ -29,17 +31,24 @@ void Ball::Update(float deltaTime)
 	if(lifetime > maxLifetime)
 	{
 		//Destroy the ball once its maximum lifetime has been reached
-		//character.balls.erase(character.balls.begin());
-		//balls.erase(balls.begin());
+		RemoveSelf();
 	}
 }
 
-void Ball::OnCollision(sf::Vector2f direction)
+void Ball::OnCollision(sf::Vector2f direction, int &health)
 {
-	std::cout << "COLLISION";
+	health -= damage;
+	//Remove urself (ball)
+
 }
 
 void Ball::Draw(sf::RenderWindow& window)
 {
 	window.draw(body);
+}
+
+void Ball::RemoveSelf()
+{
+	//character.balls.erase(character.balls.begin());
+	//balls.erase(balls.begin());
 }

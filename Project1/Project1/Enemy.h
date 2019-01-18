@@ -7,17 +7,20 @@
 class Enemy: public Character
 {
 public:
-	Enemy(sf::Texture* texture, sf::Vector2u imageCount, sf::Vector2f position, int rotation,float shootCooldown, sf::RectangleShape &target);
+	Enemy(sf::Texture* texture, sf::Vector2u imageCount, sf::Vector2f position, int rotation, int health, float shootCooldown, sf::RectangleShape &target);
 	~Enemy();
 
 	void Update(float deltaTime);
 	void Draw(sf::RenderWindow& window);
 	void SetTextureRotation(int rotation, sf::Texture* texture, sf::Vector2u imageCount);
+	void RemoveSelf();
+
+	sf::Vector2f GetPosition() { return body.getPosition(); }
+	Collider GetCollider() { return Collider(body); }
 
 	float shootCooldown;
 
 private:
-	sf::RectangleShape body;
 	sf::Texture enemyTexture;
 	sf::Texture ballTexture;
 	sf::RectangleShape &target;

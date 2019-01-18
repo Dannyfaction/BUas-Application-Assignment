@@ -23,7 +23,7 @@ int main()
 	//Player texture and animations is an edited version of this Character https://opengameart.org/content/alternate-lpc-character-sprites-george
 	playerTexture.loadFromFile("Textures/George_Edited.png");
 
-	Player player(&playerTexture, sf::Vector2u(4, 8), 0.3f, 200.0f, 200.0f, 1.0f);
+	Player player(&playerTexture, sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
 
 	sf::Texture backgroundTexture;
 	//Seamless Background Texture found with a google image search https://sftextures.com/wp-content/plugins/sf-textures-plugin/sf-textures-preview.php?tiling=Seamless&image=https://sftextures.com/wp-content/uploads/2015/01/snow-white-rough-air-fresh-light-frozen-frosty-ground-clear-seamless-texture-256x256.jpg
@@ -110,7 +110,7 @@ int main()
 
 		sf::Vector2f direction;
 
-		//for each Wall in Walls<array>
+		//for each Wall in Walls<vector>
 		for (Wall& wall: walls)
 		{
 			if (wall.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
@@ -162,12 +162,20 @@ int main()
 
 				if (ball.GetCollider().CheckCollision(player.GetCollider(), direction, 0.0f)) {
 					//player.OnCollision(direction);
-					ball.OnCollision(direction);
+					ball.OnCollision(direction, player.health);
 				}
 			}
 		}
 		for (Ball& ball : player.balls) {
 			ball.Draw(window);
+
+			for (Enemy& enemy : waveManager.spawnedEnemies)
+			{
+				if (ball.GetCollider().CheckCollision(enemy.GetCollider(), direction, 0.0f)) {
+					//player.OnCollision(direction);
+					ball.OnCollision(direction, enemy.health);
+				}
+			}
 		}
 
 		window.display();

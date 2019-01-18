@@ -1,11 +1,13 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight, float shootCooldown) :
+Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, int health, float shootCooldown) :
 	animation(texture, imageCount, switchTime)
 {
+	characterType = CharacterType::player;
+
 	this->speed = speed;
-	this->jumpHeight = jumpHeight;
+	this->health = health;
 	this->shootCooldown = shootCooldown;
 	
 	row = 0;

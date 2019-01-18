@@ -9,17 +9,21 @@ public:
 	~Ball();
 
 	void Update(float deltaTime);
-	void OnCollision(sf::Vector2f direction);
+	void OnCollision(sf::Vector2f direction, int &health);
 	void Draw(sf::RenderWindow& window);
+	void RemoveSelf();
 
 	Collider GetCollider() { return Collider(body); }
 
 private:
+	CharacterType characterType;
+
 	sf::RectangleShape body;
 	sf::Vector2f direction;
 
 	float lifetime;
 	float maxLifetime;
 	float speed;
+	float damage;
 
 };

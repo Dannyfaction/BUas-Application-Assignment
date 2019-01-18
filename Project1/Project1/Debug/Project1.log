@@ -1,5 +1,44 @@
-﻿  Player.cpp
+﻿  Ball.cpp
+  Character.cpp
+  Enemy.cpp
+e:\github\buas application assignment\project1\project1\enemy.cpp(64): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+e:\github\buas application assignment\project1\project1\enemy.cpp(65): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+  Player.cpp
 e:\github\buas application assignment\project1\project1\player.cpp(79): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-e:\github\buas application assignment\project1\project1\player.cpp(88): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
-e:\github\buas application assignment\project1\project1\player.cpp(90): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+e:\github\buas application assignment\project1\project1\player.cpp(86): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+e:\github\buas application assignment\project1\project1\player.cpp(88): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  WaveManager.cpp
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(50): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(72): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(88): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(91): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(94): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(97): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  main.cpp
+e:\github\buas application assignment\project1\project1\main.cpp(19): warning C4244: 'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+  Generating Code...
   Project1.vcxproj -> E:\Github\BUas Application Assignment\Project1\Debug\Project1.exe
