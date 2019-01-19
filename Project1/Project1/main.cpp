@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
+#include "Spawner.h"
 #include "Player.h"
 #include "Wall.h"
 #include "Background.h"
@@ -23,7 +24,8 @@ int main()
 	//Player texture and animations is an edited version of this Character https://opengameart.org/content/alternate-lpc-character-sprites-george
 	playerTexture.loadFromFile("Textures/George_Edited.png");
 
-	Player player(&playerTexture, sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
+	//Player player(&playerTexture, sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
+	Spawner::getInstance().SpawnPlayer(&playerTexture, sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
 
 	sf::Texture backgroundTexture;
 	//Seamless Background Texture found with a google image search https://sftextures.com/wp-content/plugins/sf-textures-plugin/sf-textures-preview.php?tiling=Seamless&image=https://sftextures.com/wp-content/uploads/2015/01/snow-white-rough-air-fresh-light-frozen-frosty-ground-clear-seamless-texture-256x256.jpg
@@ -59,7 +61,7 @@ int main()
 	//walls.push_back(Wall(&wallTexture, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
 	//walls.push_back(Wall(&wallTexture, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(500.0f, 500.0f)));
 
-	WaveManager waveManager(player.body);
+	WaveManager waveManager(Spawner::getInstance().player[0].body);
 
 
 
@@ -96,30 +98,24 @@ int main()
 				//printf("New window width: %i New window height: %i\n", evnt.size.width, evnt.size.height);
 				ResizeView(window, view);
 				break;
-				/*
-			case sf::Event::TextEntered:
-				if (evnt.text.unicode < 128) {
-					printf("%c", evnt.text.unicode);
-				}
-				break;
-				*/
 			}
 		}
-		player.Update(deltaTime);
+		//player.Update(deltaTime);
+		Spawner::getInstance().Update(deltaTime);
+
 		waveManager.Update(deltaTime);
 
 		sf::Vector2f direction;
 
-		//for each Wall in Walls<vector>
-		for (Wall& wall: walls)
+		for (Wall& wall : walls)
 		{
-			if (wall.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
-				player.OnCollision(direction);
+			if (wall.GetCollider().CheckCollision(Spawner::getInstance().player[0].GetCollider(), direction, 1.0f)) {
+				Spawner::getInstance().player[0].OnCollision(direction);
 			}
 		}
 
 
-		view.setCenter(player.GetPosition());
+		view.setCenter(Spawner::getInstance().player[0].GetPosition());
 
 		//player.setTextureRect(animation.uvRect);
 
@@ -130,46 +126,36 @@ int main()
 
 		}
 		*/
-		/*
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-			player.move(0.0f, -0.1f);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
-			player.move(-0.1f, 0.0f);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-			player.move(0.0f, 0.1f);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-			player.move(0.1f, 0.0f);
-		}
-		*/
 
-		window.clear(sf::Color(150,150,150));
+		window.clear(sf::Color(150, 150, 150));
 		window.setView(view);
+
 		for (Background& background : backgrounds) {
 			background.Draw(window);
 		}
 		for (Wall& wall : walls) {
 			wall.Draw(window);
 		}
-		player.Draw(window);
-		for (Enemy& enemy : waveManager.spawnedEnemies)
+
+		Spawner::getInstance().player[0].Draw(window);
+
+		for (Enemy& enemy : Spawner::getInstance().enemies)
 		{
 			enemy.Draw(window);
-			for (Ball& ball : enemy.balls) {
-				ball.Draw(window);
 
-				if (ball.GetCollider().CheckCollision(player.GetCollider(), direction, 0.0f)) {
-					//player.OnCollision(direction);
-					ball.OnCollision(direction, player.health);
-				}
-			}
 		}
-		for (Ball& ball : player.balls) {
+		for (Ball& ball : Spawner::getInstance().enemyBalls) {
 			ball.Draw(window);
 
-			for (Enemy& enemy : waveManager.spawnedEnemies)
+			if (ball.GetCollider().CheckCollision(Spawner::getInstance().player[0].GetCollider(), direction, 0.0f)) {
+				//player.OnCollision(direction);
+				ball.OnCollision(direction, Spawner::getInstance().player[0].health);
+			}
+		}
+		for (Ball& ball : Spawner::getInstance().playerBalls) {
+			ball.Draw(window);
+
+			for (Enemy& enemy : Spawner::getInstance().enemies)
 			{
 				if (ball.GetCollider().CheckCollision(enemy.GetCollider(), direction, 0.0f)) {
 					//player.OnCollision(direction);

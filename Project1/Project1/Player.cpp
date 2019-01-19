@@ -1,15 +1,20 @@
 #include "Player.h"
 #include <iostream>
+//#include "GlobalEventDispatcher.h"
+#include "SpawnID.h"
+#include "Spawner.h"
 
 Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, int health, float shootCooldown) :
 	animation(texture, imageCount, switchTime)
 {
-	characterType = CharacterType::player;
+	spawnID = SpawnID::getInstance().GetNewID();
+	std::cout << "Spawned player with ID: " << spawnID << "\n";
 
 	this->speed = speed;
 	this->health = health;
 	this->shootCooldown = shootCooldown;
 	
+
 	row = 0;
 	faceRight = true;
 
@@ -20,6 +25,16 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 
 	//Snowball Texture found with a google image search https://fr.kisspng.com/png-qt9l43/
 	ballTexture.loadFromFile("Textures/Snowball.png");
+
+	/*
+	GlobalEventDispatcher::getInstance().dispatcher.appendListener(1, [](const int & otherSpawnID) {
+		RemoveBallByID(otherSpawnID);
+	});
+	std::cout << "Appended enemy listener for possible ball remove with my ID: " << spawnID << "\n";
+
+	GlobalEventDispatcher::getInstance().dispatcher.appendListener(2, [this](const int & spawnID) {
+		RemoveBallByID(spawnID);
+	});*/
 }
 
 
@@ -81,7 +96,8 @@ void Player::Update(float deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) & shootTimer <= 0) {
 		shootTimer = shootCooldown;
 		//Spawn a ball with the following information; Texture, Size, Position, Direction and the <vector>balls reference so that it can remove itself
-		balls.push_back(Ball(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), DirectionFromAnimationRow()));
+		//balls.push_back(Ball(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), DirectionFromAnimationRow()));
+		Spawner::getInstance().SpawnPlayerBall(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), DirectionFromAnimationRow());
 	}
 
 	//If in the previous frame you were walking and this frame you stopped walking, change to Idle animation
@@ -173,4 +189,26 @@ sf::Vector2f Player::DirectionFromAnimationRow()
 	}
 
 	return  direction;
+}
+
+void Player::RemoveSelf()
+{
+	std::cout << "removed";
+	//balls.erase(balls.begin());
+}
+
+void Player::RemoveBallByID(int spawnID)
+{
+	//std::cout << balls.size();
+	std::cout << "I am a Listener with the ID: " << spawnID << " and I'm trying to remove a ball" << "\n";
+	/*
+	for (int i = 0; i < balls.size(); i++)
+	{
+		if (balls[i].GetSpawnID() == spawnID) {
+			std::cout << "Removed ball from player" << "\n";
+			balls.erase(balls.begin() + i);
+		}
+	}*/
+	
+
 }

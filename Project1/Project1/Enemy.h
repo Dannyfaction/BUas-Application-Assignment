@@ -13,7 +13,9 @@ public:
 	void Update(float deltaTime);
 	void Draw(sf::RenderWindow& window);
 	void SetTextureRotation(int rotation, sf::Texture* texture, sf::Vector2u imageCount);
+	int GetSpawnID() { return spawnID; }
 	void RemoveSelf();
+	void RemoveBallByID(int spawnID);
 
 	sf::Vector2f GetPosition() { return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
@@ -21,6 +23,8 @@ public:
 	float shootCooldown;
 
 private:
+	int spawnID=0;
+
 	sf::Texture enemyTexture;
 	sf::Texture ballTexture;
 	sf::RectangleShape &target;

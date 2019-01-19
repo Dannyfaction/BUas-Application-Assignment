@@ -1,6 +1,7 @@
 #include "WaveManager.h"
 #include <iostream>
 #include <random>
+#include "Spawner.h"
 
 
 WaveManager::WaveManager(sf::RectangleShape &playerBody) : playerBody(playerBody)
@@ -100,5 +101,6 @@ void WaveManager::SpawnEnemy()
 	}
 
 	//Spawn an enemy with the following information; Texture, Position, Direction, health, ShootCooldown and ShootTarget
-	spawnedEnemies.push_back(Enemy(&enemyTexture, sf::Vector2u(1,4), enemyPosition, randomEnemyDirection, health, randomizedEnemyShootCooldown, playerBody));
+	//spawnedEnemies.push_back(Enemy(&enemyTexture, sf::Vector2u(1,4), enemyPosition, randomEnemyDirection, health, randomizedEnemyShootCooldown, playerBody));
+	Spawner::getInstance().SpawnEnemy(&enemyTexture, sf::Vector2u(1, 4), enemyPosition, randomEnemyDirection, health, randomizedEnemyShootCooldown, playerBody);
 }

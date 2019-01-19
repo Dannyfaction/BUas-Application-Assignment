@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\SFML Projects\Project1\sfml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Github\BUas Application Assignment\Project1\boost;E:\Github\BUas Application Assignment\Project1\sfml\include;E:\Github\BUas Application Assignment\Project1\eventpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>sfml-system-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -130,6 +130,8 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Spawner.cpp" />
+    <ClCompile Include="SpawnID.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="WaveData.cpp" />
@@ -142,6 +144,9 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GlobalEventDispatcher.h" />
+    <ClInclude Include="Spawner.h" />
+    <ClInclude Include="SpawnID.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="WaveData.h" />

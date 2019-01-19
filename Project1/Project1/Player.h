@@ -15,12 +15,17 @@ public:
 	void Update(float deltaTime);
 	void Draw(sf::RenderWindow& window);
 	void OnCollision(sf::Vector2f direction);
+	int GetSpawnID() { return spawnID; }
+	void RemoveSelf();
+	void RemoveBallByID(int spawnID);
+
 	sf::Vector2f DirectionFromAnimationRow();
 
 	sf::Vector2f GetPosition() {return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
 
 private:
+	int spawnID;
 	sf::Texture ballTexture;
 
 	Animation animation;
