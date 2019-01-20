@@ -1,22 +1,27 @@
-﻿  Enemy.cpp
-e:\github\buas application assignment\project1\project1\enemy.cpp(82): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+﻿  WaveManager.cpp
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(51): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(73): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
-              T=int
+              T=float
           ]
-e:\github\buas application assignment\project1\project1\enemy.cpp(83): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(93): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
-              T=int
+              T=float
           ]
-  Spawner.cpp
-e:\github\buas application assignment\project1\project1\spawner.cpp(5): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(10): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(15): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(20): warning C4018: '<': signed/unsigned mismatch
-  Player.cpp
-e:\github\buas application assignment\project1\project1\player.cpp(96): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-e:\github\buas application assignment\project1\project1\player.cpp(104): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
-e:\github\buas application assignment\project1\project1\player.cpp(106): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(96): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(99): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  main.cpp
+e:\github\buas application assignment\project1\project1\main.cpp(20): warning C4244: 'argument': conversion from 'const float' to 'unsigned int', possible loss of data
   Generating Code...
   Project1.vcxproj -> E:\Github\BUas Application Assignment\Project1\Debug\Project1.exe

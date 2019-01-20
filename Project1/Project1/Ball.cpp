@@ -1,8 +1,8 @@
 #include "Ball.h"
 #include <iostream>
-#include "Player.h"
 //#include "GlobalEventDispatcher.h"
 #include "SpawnID.h"
+#include "Spawner.h"
 
 Ball::Ball(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction)
 {
@@ -41,6 +41,7 @@ void Ball::OnCollision(sf::Vector2f direction, int &health)
 {
 	health -= damage;
 	//Remove urself (ball)
+	RemoveSelf();
 
 }
 
@@ -54,4 +55,5 @@ void Ball::RemoveSelf()
 	//character.balls.erase(character.balls.begin());
 	//balls.erase(balls.begin());
 	//GlobalEventDispatcher::getInstance().dispatcher.dispatch(1, GetSpawnID());
+	Spawner::getInstance().RemoveBall(spawnID);
 }

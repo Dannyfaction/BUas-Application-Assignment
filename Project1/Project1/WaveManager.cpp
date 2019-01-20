@@ -36,7 +36,7 @@ void WaveManager::SetWaveData()
 	//WaveData holds the information of each wave (Amount of enemies, time between enemy spawns, health, snowball throw rate)
 
 	//Wave 1
-	waveDatas.push_back(WaveData(5, 3.0f, 100, 3.0f));
+	waveDatas.push_back(WaveData(3, 3.0f, 100, 3.0f));
 
 	//Wave 2
 	waveDatas.push_back(WaveData(8, 2.0f, 200, 2.5f));

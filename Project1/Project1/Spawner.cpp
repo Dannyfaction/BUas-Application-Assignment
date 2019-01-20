@@ -44,3 +44,41 @@ void Spawner::SpawnEnemyBall(sf::Texture* texture, sf::Vector2f size, sf::Vector
 {
 	enemyBalls.push_back(Ball(texture, size, position, direction));
 }
+
+void Spawner::RemovePlayer(int spawnID)
+{
+	for (int i = 0; i < player.size(); i++)
+	{
+		if (player[i].GetSpawnID() == spawnID) {
+			player.erase(player.begin()+i);
+		}
+	}
+}
+
+void Spawner::RemoveEnemy(int spawnID)
+{
+	/*
+	for (int i = 0; i < enemies.size(); i++)
+	{
+		if (enemies[i].GetSpawnID() == spawnID) {
+			enemies.erase(enemies.begin() + i);
+		}
+	}*/
+}
+
+void Spawner::RemoveBall(int spawnID)
+{
+	for (int i = 0; i < playerBalls.size(); i++)
+	{
+		if (playerBalls[i].GetSpawnID() == spawnID) {
+			playerBalls.erase(playerBalls.begin() + i);
+		}
+	}
+
+	for (int i = 0; i < enemyBalls.size(); i++)
+	{
+		if (enemyBalls[i].GetSpawnID() == spawnID) {
+			enemyBalls.erase(enemyBalls.begin() + i);
+		}
+	}
+}

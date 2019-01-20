@@ -127,6 +127,22 @@ int main()
 		}
 		*/
 
+		for (Ball& ball : Spawner::getInstance().enemyBalls) {
+			if (ball.GetCollider().CheckCollision(Spawner::getInstance().player[0].GetCollider(), direction, 0.0f)) {
+				//player.OnCollision(direction);
+				ball.OnCollision(direction, Spawner::getInstance().player[0].health);
+			}
+		}
+		for (Ball& ball : Spawner::getInstance().playerBalls) {
+			for (Enemy& enemy : Spawner::getInstance().enemies)
+			{
+				if (ball.GetCollider().CheckCollision(enemy.GetCollider(), direction, 0.0f)) {
+					//player.OnCollision(direction);
+					ball.OnCollision(direction, enemy.health);
+				}
+			}
+		}
+
 		window.clear(sf::Color(150, 150, 150));
 		window.setView(view);
 
@@ -142,26 +158,12 @@ int main()
 		for (Enemy& enemy : Spawner::getInstance().enemies)
 		{
 			enemy.Draw(window);
-
 		}
 		for (Ball& ball : Spawner::getInstance().enemyBalls) {
 			ball.Draw(window);
-
-			if (ball.GetCollider().CheckCollision(Spawner::getInstance().player[0].GetCollider(), direction, 0.0f)) {
-				//player.OnCollision(direction);
-				ball.OnCollision(direction, Spawner::getInstance().player[0].health);
-			}
 		}
 		for (Ball& ball : Spawner::getInstance().playerBalls) {
 			ball.Draw(window);
-
-			for (Enemy& enemy : Spawner::getInstance().enemies)
-			{
-				if (ball.GetCollider().CheckCollision(enemy.GetCollider(), direction, 0.0f)) {
-					//player.OnCollision(direction);
-					ball.OnCollision(direction, enemy.health);
-				}
-			}
 		}
 
 		window.display();

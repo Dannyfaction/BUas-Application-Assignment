@@ -19,6 +19,10 @@ public:
 	void SpawnPlayerBall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction);
 	void SpawnEnemyBall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction);
 
+	void RemovePlayer(int spawnID);
+	void RemoveEnemy(int spawnID);
+	void RemoveBall(int spawnID);
+
 	//Player GetPlayer() { return player[player.begin]; }
 
 
