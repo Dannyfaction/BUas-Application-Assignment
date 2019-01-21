@@ -11,5 +11,5 @@ public:
 	int health;
 	int spawnID;
 	sf::RectangleShape body;
-	std::vector<Ball> balls;
+	//std::vector<Ball> balls;
 };

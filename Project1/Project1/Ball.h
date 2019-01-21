@@ -5,7 +5,7 @@
 class Ball
 {
 public:
-	Ball(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction);
+	Ball(sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction);
 	~Ball();
 	void Update(float deltaTime);
 	void OnCollision(sf::Vector2f direction, int &health);

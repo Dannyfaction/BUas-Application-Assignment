@@ -3,6 +3,9 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Ball.h"
+#include "Background.h"
+#include "Wall.h"
+#include "Health.h"
 
 class Spawner
 {
@@ -15,16 +18,18 @@ public:
 	void Update(float deltaTime);
 
 	void SpawnPlayer(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, int health, float shootCooldown);
-	void SpawnEnemy(sf::Texture* texture, sf::Vector2u imageCount, sf::Vector2f position, int rotation, int health, float shootCooldown, sf::RectangleShape &target);
-	void SpawnPlayerBall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction);
-	void SpawnEnemyBall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction);
+	void SpawnEnemy(sf::Vector2u imageCount, sf::Vector2f position, int rotation, int health, float shootCooldown);
+	void SpawnPlayerBall(sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction);
+	void SpawnEnemyBall(sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction);
+
+	void SpawnHealth(sf::Vector2f size, sf::Vector2f position);
+
+	void SpawnBackground(sf::Vector2f size, sf::Vector2f position);
+	void SpawnWall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, bool rotate);
 
 	void RemovePlayer(int spawnID);
 	void RemoveEnemy(int spawnID);
 	void RemoveBall(int spawnID);
-
-	//Player GetPlayer() { return player[player.begin]; }
-
 
 private:
 	Spawner() {}
@@ -37,5 +42,9 @@ public:
 	std::vector<Enemy> enemies;
 	std::vector<Ball> playerBalls;
 	std::vector<Ball> enemyBalls;
+	
+	std::vector<Background> backgrounds;
+	std::vector<Wall> walls;
+	std::vector<Health> health;
 };
 

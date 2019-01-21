@@ -3,8 +3,9 @@
 //#include "GlobalEventDispatcher.h"
 #include "SpawnID.h"
 #include "Spawner.h"
+#include "TextureManager.h"
 
-Ball::Ball(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction)
+Ball::Ball(sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction)
 {
 	spawnID = SpawnID::getInstance().GetNewID();
 	std::cout << "Spawned ball with ID: " << spawnID << "\n";
@@ -12,7 +13,7 @@ Ball::Ball(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::V
 	body.setSize(size);
 	body.setOrigin(size / 2.0f);
 	body.setPosition(position);
-	body.setTexture(texture);
+	body.setTexture(TextureManager::getInstance().GetBallTexture());
 
 	this->direction = direction;
 
@@ -39,7 +40,9 @@ void Ball::Update(float deltaTime)
 
 void Ball::OnCollision(sf::Vector2f direction, int &health)
 {
+	//Decrease health on either the enemy or the player
 	health -= damage;
+
 	//Remove urself (ball)
 	RemoveSelf();
 
@@ -52,8 +55,5 @@ void Ball::Draw(sf::RenderWindow& window)
 
 void Ball::RemoveSelf()
 {
-	//character.balls.erase(character.balls.begin());
-	//balls.erase(balls.begin());
-	//GlobalEventDispatcher::getInstance().dispatcher.dispatch(1, GetSpawnID());
 	Spawner::getInstance().RemoveBall(spawnID);
 }

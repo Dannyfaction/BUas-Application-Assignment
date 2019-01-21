@@ -3,9 +3,9 @@
 //#include "GlobalEventDispatcher.h"
 #include "SpawnID.h"
 #include "Spawner.h"
+#include "TextureManager.h"
 
-Enemy::Enemy(sf::Texture* texture, sf::Vector2u imageCount, sf::Vector2f position, int rotation, int health, float shootCooldown, sf::RectangleShape &target) :
-	target(target)
+Enemy::Enemy(sf::Vector2u imageCount, sf::Vector2f position, int rotation, int health, float shootCooldown) 
 {
 	spawnID = SpawnID::getInstance().GetNewID();
 	std::cout << "Spawned enemy with ID: " << spawnID << "\n";
@@ -17,14 +17,11 @@ Enemy::Enemy(sf::Texture* texture, sf::Vector2u imageCount, sf::Vector2f positio
 	body.setSize(sf::Vector2f(100.0f, 100.0f));
 	body.setOrigin(body.getSize() / 2.0f);
 	body.setPosition(position.x, position.y);
-	body.setTexture(texture);
+	body.setTexture(TextureManager::getInstance().GetEnemyTexture());
 
 	shootCooldownTimer = 0;
 
-	SetTextureRotation(rotation, texture, imageCount);
-
-	//TODO make a Texture Manager
-	//ballTexture.loadFromFile("Textures/Snowball.png");
+	SetTextureRotation(rotation, TextureManager::getInstance().GetEnemyTexture(), imageCount);
 
 	/*
 	GlobalEventDispatcher::getInstance().dispatcher.appendListener(1, [this](const int & otherSpawnID) {
@@ -46,6 +43,7 @@ void Enemy::Update(float deltaTime)
 	//Once the enemy is not on shootcooldown anymore, shoot a snowball
 	if (shootCooldownTimer >= shootCooldown) {
 		//The direction the ball is going to be 'thrown' in
+		target = Spawner::getInstance().player[0].body;
 		sf::Vector2f targetDirection = sf::Vector2f(target.getPosition() - body.getPosition());
 
 		//Normalize the Vector so that the length is 1 (preventing the ball from flying away at high speeds instead of using the Speed value initialized in ball.cpp)
@@ -54,18 +52,19 @@ void Enemy::Update(float deltaTime)
 
 		//Spawn a snowball with the following information; Texture, Size, Position, Direction
 		//balls.push_back(Ball(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), targetDirection));
-		Spawner::getInstance().SpawnEnemyBall(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), targetDirection);
+		Spawner::getInstance().SpawnEnemyBall(sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), targetDirection);
 
 		//Reset the cooldown timer
 		shootCooldownTimer = 0;
 	}
 
+	/*
 	for (Ball& ball : balls) {
 		ball.Update(deltaTime);
-	}
+	}*/
 
 	if (health <= 0) {
-		//RemoveSelf();
+		RemoveSelf();
 	}
 }
 
@@ -111,14 +110,15 @@ void Enemy::SetTextureRotation(int rotation, sf::Texture* texture, sf::Vector2u 
 void Enemy::RemoveSelf()
 {
 	std::cout << "removed";
+	Spawner::getInstance().RemoveEnemy(spawnID);
 	//balls.erase(balls.begin());
 }
 
+/*
 void Enemy::RemoveBallByID(int otherSpawnID)
 {
 	std::cout << "I am a Listener with the ID: " << spawnID << " and I'm trying to remove a ball" << "\n";
 	//std::cout << "I am an enemy with the ID: " << spawnID << " and im attempting to remove the ball with the spawn ID: " << _spawnID << " and my ballsSize is: " << balls.size() << " and my health is: " <<  health   << "\n";
-	/*
 	for (int i = 0; i < balls.size(); i++)
 	{
 		std::cout << "Ik probeer de spawn ID op te halen met de size: " << this->balls.size() << " en mijn ID is: " << spawnID << " en de ID van de ball is" << _spawnID << "\n";
@@ -127,8 +127,8 @@ void Enemy::RemoveBallByID(int otherSpawnID)
 			std::cout << "Removed ball";
 			balls.erase(balls.begin() + i);
 		}
-	}*/
-}
+	}
+}*/
 
 
 

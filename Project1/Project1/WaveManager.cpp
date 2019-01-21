@@ -102,5 +102,5 @@ void WaveManager::SpawnEnemy()
 
 	//Spawn an enemy with the following information; Texture, Position, Direction, health, ShootCooldown and ShootTarget
 	//spawnedEnemies.push_back(Enemy(&enemyTexture, sf::Vector2u(1,4), enemyPosition, randomEnemyDirection, health, randomizedEnemyShootCooldown, playerBody));
-	Spawner::getInstance().SpawnEnemy(&enemyTexture, sf::Vector2u(1, 4), enemyPosition, randomEnemyDirection, health, randomizedEnemyShootCooldown, playerBody);
+	Spawner::getInstance().SpawnEnemy(sf::Vector2u(1, 4), enemyPosition, randomEnemyDirection, health, randomizedEnemyShootCooldown);
 }

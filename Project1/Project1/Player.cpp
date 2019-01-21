@@ -3,6 +3,7 @@
 //#include "GlobalEventDispatcher.h"
 #include "SpawnID.h"
 #include "Spawner.h"
+#include "TextureManager.h"
 
 Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, int health, float shootCooldown) :
 	animation(texture, imageCount, switchTime)
@@ -23,8 +24,6 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	body.setPosition(0.0f, 0.0f);
 	body.setTexture(texture);
 
-	//Snowball Texture found with a google image search https://fr.kisspng.com/png-qt9l43/
-	ballTexture.loadFromFile("Textures/Snowball.png");
 
 	/*
 	GlobalEventDispatcher::getInstance().dispatcher.appendListener(1, [](const int & otherSpawnID) {
@@ -97,7 +96,7 @@ void Player::Update(float deltaTime)
 		shootTimer = shootCooldown;
 		//Spawn a ball with the following information; Texture, Size, Position, Direction and the <vector>balls reference so that it can remove itself
 		//balls.push_back(Ball(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), DirectionFromAnimationRow()));
-		Spawner::getInstance().SpawnPlayerBall(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), DirectionFromAnimationRow());
+		Spawner::getInstance().SpawnPlayerBall(sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), DirectionFromAnimationRow());
 	}
 
 	//If in the previous frame you were walking and this frame you stopped walking, change to Idle animation
@@ -132,9 +131,10 @@ void Player::Update(float deltaTime)
 	body.setTextureRect(animation.uvRect);
 	body.move(velocity * deltaTime);
 
+	/*
 	for (Ball& ball : balls) {
 		ball.Update(deltaTime);
-	}
+	}*/
 }
 
 void Player::Draw(sf::RenderWindow& window)

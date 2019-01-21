@@ -21,8 +21,6 @@ void Spawner::Update(float deltaTime)
 	{
 		enemyBalls[i].Update(deltaTime);
 	}
-
-
 }
 
 void Spawner::SpawnPlayer(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, int health, float shootCooldown)
@@ -30,19 +28,34 @@ void Spawner::SpawnPlayer(sf::Texture* texture, sf::Vector2u imageCount, float s
 	player.push_back(Player(texture, imageCount, switchTime, speed, health, shootCooldown));
 }
 
-void Spawner::SpawnEnemy(sf::Texture* texture, sf::Vector2u imageCount, sf::Vector2f position, int rotation, int health, float shootCooldown, sf::RectangleShape & target)
+void Spawner::SpawnEnemy(sf::Vector2u imageCount, sf::Vector2f position, int rotation, int health, float shootCooldown)
 {
-	enemies.push_back(Enemy(texture, imageCount, position, rotation, health, shootCooldown, target));
+	enemies.push_back(Enemy(imageCount, position, rotation, health, shootCooldown));
 }
 
-void Spawner::SpawnPlayerBall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction)
+void Spawner::SpawnPlayerBall(sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction)
 {
-	playerBalls.push_back(Ball(texture, size, position, direction));
+	playerBalls.push_back(Ball(size, position, direction));
 }
 
-void Spawner::SpawnEnemyBall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction)
+void Spawner::SpawnEnemyBall(sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction)
 {
-	enemyBalls.push_back(Ball(texture, size, position, direction));
+	enemyBalls.push_back(Ball(size, position, direction));
+}
+
+void Spawner::SpawnHealth(sf::Vector2f size, sf::Vector2f position)
+{
+	health.push_back(Health(size, position));
+}
+
+void Spawner::SpawnBackground(sf::Vector2f size, sf::Vector2f position)
+{
+	backgrounds.push_back(Background(size, position));
+}
+
+void Spawner::SpawnWall(sf::Texture * texture, sf::Vector2f size, sf::Vector2f position, bool rotate)
+{
+	walls.push_back(Wall(texture, size, position, rotate));
 }
 
 void Spawner::RemovePlayer(int spawnID)
@@ -57,13 +70,12 @@ void Spawner::RemovePlayer(int spawnID)
 
 void Spawner::RemoveEnemy(int spawnID)
 {
-	/*
 	for (int i = 0; i < enemies.size(); i++)
 	{
 		if (enemies[i].GetSpawnID() == spawnID) {
 			enemies.erase(enemies.begin() + i);
 		}
-	}*/
+	}
 }
 
 void Spawner::RemoveBall(int spawnID)

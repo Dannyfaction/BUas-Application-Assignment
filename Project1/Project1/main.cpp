@@ -2,10 +2,11 @@
 #include <iostream>
 #include <vector>
 #include "Spawner.h"
-#include "Player.h"
 #include "Wall.h"
 #include "Background.h"
 #include "WaveManager.h"
+#include "TextureManager.h"
+#include "UserInterface.h"
 
 static const float VIEW_WIDTH = 900.0f;
 static const float VIEW_HEIGHT = 900.0f;
@@ -20,23 +21,10 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(VIEW_WIDTH, VIEW_HEIGHT), "Project1", sf::Style::Close | sf::Style::Resize);
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_WIDTH, VIEW_HEIGHT));
 
-	sf::Texture playerTexture;
-	//Player texture and animations is an edited version of this Character https://opengameart.org/content/alternate-lpc-character-sprites-george
-	playerTexture.loadFromFile("Textures/George_Edited.png");
+	TextureManager::getInstance().LoadTextures();
+	UserInterface::getInstance().LoadUserInterface();
 
-	//Player player(&playerTexture, sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
-	Spawner::getInstance().SpawnPlayer(&playerTexture, sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
-
-	sf::Texture backgroundTexture;
-	//Seamless Background Texture found with a google image search https://sftextures.com/wp-content/plugins/sf-textures-plugin/sf-textures-preview.php?tiling=Seamless&image=https://sftextures.com/wp-content/uploads/2015/01/snow-white-rough-air-fresh-light-frozen-frosty-ground-clear-seamless-texture-256x256.jpg
-	backgroundTexture.loadFromFile("Textures/Seamless_Snow.jpg");
-
-	sf::Texture wallTexture;
-	//Wall Texture is an edited version of the following image which was found with a google image search https://www.kisspng.com/png-ice-cube-stock-photography-royalty-free-blue-crush-182395/
-	wallTexture.loadFromFile("Textures/Ice_Wall.png");
-	wallTexture.setRepeated(true);
-
-	std::vector<Background> backgrounds;
+	Spawner::getInstance().SpawnPlayer(TextureManager::getInstance().GetPlayerTexture(), sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
 
 	float const backgroundRows = 5;
 	float const backgroundColumns = 5;
@@ -47,25 +35,16 @@ int main()
 	{
 		for (int j = 0; j < backgroundColumns; j++)
 		{
-			backgrounds.push_back(Background(&backgroundTexture, sf::Vector2f(500.0f, 500.0f), sf::Vector2f(j  * 500.0f - backgroundCenterXOffset, i * 500.0f - backgroundCenterYOffset)));
+			Spawner::getInstance().SpawnBackground(sf::Vector2f(500.0f, 500.0f), sf::Vector2f(j  * 500.0f - backgroundCenterXOffset, i * 500.0f - backgroundCenterYOffset));
 		}
 	}
 
-	std::vector<Wall> walls;
-	walls.push_back(Wall(&wallTexture, sf::Vector2f(875.0f, 100.0f), sf::Vector2f(0.0f, -400.0f), false));
-	walls.push_back(Wall(&wallTexture, sf::Vector2f(875.0f, 100.0f), sf::Vector2f(0.0f, 400.0f), false));
-	walls.push_back(Wall(&wallTexture, sf::Vector2f(875.0f, 100.0f), sf::Vector2f(-400.0f, 0.0f), true));
-	walls.push_back(Wall(&wallTexture, sf::Vector2f(875.0f, 100.0f), sf::Vector2f(400.0f, 0.0f), true));
-
-	//walls.push_back(Wall(&wallTexture, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
-	//walls.push_back(Wall(&wallTexture, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
-	//walls.push_back(Wall(&wallTexture, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(500.0f, 500.0f)));
+	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(0.0f, -400.0f), false);
+	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(0.0f, 400.0f), false);
+	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(-400.0f, 0.0f), true);
+	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(400.0f, 0.0f), true);
 
 	WaveManager waveManager(Spawner::getInstance().player[0].body);
-
-
-
-	//animation.setSmooth(true);
 
 	float deltaTime = 0.0f;
 	sf::Clock clock;
@@ -107,7 +86,7 @@ int main()
 
 		sf::Vector2f direction;
 
-		for (Wall& wall : walls)
+		for (Wall& wall : Spawner::getInstance().walls)
 		{
 			if (wall.GetCollider().CheckCollision(Spawner::getInstance().player[0].GetCollider(), direction, 1.0f)) {
 				Spawner::getInstance().player[0].OnCollision(direction);
@@ -146,10 +125,10 @@ int main()
 		window.clear(sf::Color(150, 150, 150));
 		window.setView(view);
 
-		for (Background& background : backgrounds) {
+		for (Background& background : Spawner::getInstance().backgrounds) {
 			background.Draw(window);
 		}
-		for (Wall& wall : walls) {
+		for (Wall& wall : Spawner::getInstance().walls) {
 			wall.Draw(window);
 		}
 
