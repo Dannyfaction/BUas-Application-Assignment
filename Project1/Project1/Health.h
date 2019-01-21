@@ -10,9 +10,9 @@ public:
 
 	void Draw(sf::RenderWindow& window);
 	//Collider GetCollider() { return Collider(body); }
+	sf::RectangleShape body;
 
 private:
-	sf::RectangleShape body;
 
 	//sf::Sprite wallSprite;
 };

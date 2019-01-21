@@ -10,8 +10,10 @@ public:
 		return instance;
 	}
 
-	void Draw(sf::RenderWindow& window);
-	void LoadUserInterface();
+	void LoadUserInterface(sf::RenderWindow& window);
+	void UpdateScreenPosition(sf::RenderWindow& window);
+
+	sf::Vector2f GetTopLeftScreenPosition() { return topLeftScreenPosition; }
 
 private:
 	UserInterface() {}
@@ -24,4 +26,8 @@ private:
 	std::vector<sf::RectangleShape> healthBar;
 	//sf::RectangleShape body;
 	sf::Text waveText;
+	sf::Vector2f topLeftScreenPosition;
+	sf::Vector2f heartSize;
+	sf::Vector2f heartOffset;
+	sf::Vector2f heartPosition;
 };

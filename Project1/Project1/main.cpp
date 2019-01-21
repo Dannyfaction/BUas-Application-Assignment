@@ -22,7 +22,7 @@ int main()
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_WIDTH, VIEW_HEIGHT));
 
 	TextureManager::getInstance().LoadTextures();
-	UserInterface::getInstance().LoadUserInterface();
+	UserInterface::getInstance().LoadUserInterface(window);
 
 	Spawner::getInstance().SpawnPlayer(TextureManager::getInstance().GetPlayerTexture(), sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
 
@@ -95,6 +95,7 @@ int main()
 
 
 		view.setCenter(Spawner::getInstance().player[0].GetPosition());
+		UserInterface::getInstance().UpdateScreenPosition(window);
 
 		//player.setTextureRect(animation.uvRect);
 
@@ -143,6 +144,9 @@ int main()
 		}
 		for (Ball& ball : Spawner::getInstance().playerBalls) {
 			ball.Draw(window);
+		}
+		for (Health& health : Spawner::getInstance().health) {
+			health.Draw(window);
 		}
 
 		window.display();

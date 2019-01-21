@@ -1,53 +1,21 @@
-﻿  Ball.cpp
-e:\github\buas application assignment\project1\project1\ball.cpp(44): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-  Enemy.cpp
-e:\github\buas application assignment\project1\project1\enemy.cpp(81): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+﻿  UserInterface.cpp
+e:\github\buas application assignment\project1\project1\userinterface.cpp(7): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
-              T=int
+              T=unsigned int
           ]
-e:\github\buas application assignment\project1\project1\enemy.cpp(82): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-  Player.cpp
-e:\github\buas application assignment\project1\project1\player.cpp(95): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-e:\github\buas application assignment\project1\project1\player.cpp(103): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
-e:\github\buas application assignment\project1\project1\player.cpp(105): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-  Spawner.cpp
-e:\github\buas application assignment\project1\project1\spawner.cpp(5): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(10): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(15): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(20): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(58): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(68): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(78): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(85): warning C4018: '<': signed/unsigned mismatch
-  WaveManager.cpp
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(51): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(73): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
+          and
           [
               T=float
           ]
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(93): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+e:\github\buas application assignment\project1\project1\userinterface.cpp(19): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
+          [
+              T=unsigned int
+          ]
+          and
           [
               T=float
           ]
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(96): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(99): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-  main.cpp
-e:\github\buas application assignment\project1\project1\main.cpp(21): warning C4244: 'argument': conversion from 'const float' to 'unsigned int', possible loss of data
-  Generating Code...
+e:\github\buas application assignment\project1\project1\userinterface.cpp(23): warning C4018: '<': signed/unsigned mismatch
   Project1.vcxproj -> E:\Github\BUas Application Assignment\Project1\Debug\Project1.exe
