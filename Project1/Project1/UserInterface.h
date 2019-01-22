@@ -11,9 +11,10 @@ public:
 	}
 
 	void LoadUserInterface(sf::RenderWindow& window);
-	void UpdateScreenPosition(sf::RenderWindow& window);
+	void UpdateUserInterface(sf::RenderWindow& window);
+	void LoadGameOverScreen();
 
-	sf::Vector2f GetTopLeftScreenPosition() { return topLeftScreenPosition; }
+	//sf::Vector2f GetTopLeftScreenPosition() { return topLeftScreenPosition; }
 
 private:
 	UserInterface() {}
@@ -27,6 +28,7 @@ private:
 	//sf::RectangleShape body;
 	sf::Text waveText;
 	sf::Vector2f topLeftScreenPosition;
+
 	sf::Vector2f heartSize;
 	sf::Vector2f heartOffset;
 	sf::Vector2f heartPosition;

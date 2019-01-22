@@ -19,7 +19,7 @@ Ball::Ball(sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction)
 
 	lifetime = 0.0f;
 	maxLifetime = 5.0f;
-	speed = 100.0f;
+	speed = 250.0f;
 	damage = 100.0f;
 }
 

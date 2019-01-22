@@ -23,6 +23,7 @@ public:
 
 	sf::Vector2f GetPosition() {return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
+	bool GetDeadState() { return isDead; }
 
 private:
 	int spawnID;
@@ -38,5 +39,7 @@ private:
 
 	float shootCooldown;
 	float shootTimer;
+
+	bool isDead;
 };
 

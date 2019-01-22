@@ -19,4 +19,7 @@ void TextureManager::LoadTextures()
 
 	//Heart sprite taken from https://opengameart.org/content/heart-pixel-art
 	heartTexture.loadFromFile("Textures/Heart.png");
+
+	//Game over sprite found with a google image search https://pngimage.net/wp-content/uploads/2018/06/game-over-png-2.png
+	gameOverTexture.loadFromFile("Textures/Game_Over.png");
 }

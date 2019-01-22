@@ -4,6 +4,7 @@
 #include "SpawnID.h"
 #include "Spawner.h"
 #include "TextureManager.h"
+#include "UserInterface.h"
 
 Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, int health, float shootCooldown) :
 	animation(texture, imageCount, switchTime)
@@ -14,7 +15,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	this->speed = speed;
 	this->health = health;
 	this->shootCooldown = shootCooldown;
-	
+	isDead = false;
 
 	row = 0;
 	faceRight = true;
@@ -43,6 +44,12 @@ Player::~Player()
 
 void Player::Update(float deltaTime)
 {
+	if (health <= 0) {
+		std::cout << "GAME OVER" << "\n";
+		UserInterface::getInstance().LoadGameOverScreen();
+		isDead = true;
+	}
+
 	if(shootTimer > 0.0f)
 	{
 		shootTimer -= deltaTime;
@@ -95,7 +102,6 @@ void Player::Update(float deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) & shootTimer <= 0) {
 		shootTimer = shootCooldown;
 		//Spawn a ball with the following information; Texture, Size, Position, Direction and the <vector>balls reference so that it can remove itself
-		//balls.push_back(Ball(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), DirectionFromAnimationRow()));
 		Spawner::getInstance().SpawnPlayerBall(sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), DirectionFromAnimationRow());
 	}
 
@@ -130,11 +136,6 @@ void Player::Update(float deltaTime)
 	animation.Update(row, deltaTime, faceRight);
 	body.setTextureRect(animation.uvRect);
 	body.move(velocity * deltaTime);
-
-	/*
-	for (Ball& ball : balls) {
-		ball.Update(deltaTime);
-	}*/
 }
 
 void Player::Draw(sf::RenderWindow& window)
@@ -159,6 +160,8 @@ void Player::OnCollision(sf::Vector2f direction)
 		//Collision on the top
 		velocity.y = 0.0f;
 	}
+
+
 }
 
 sf::Vector2f Player::DirectionFromAnimationRow()
@@ -193,8 +196,7 @@ sf::Vector2f Player::DirectionFromAnimationRow()
 
 void Player::RemoveSelf()
 {
-	std::cout << "removed";
-	//balls.erase(balls.begin());
+	//
 }
 
 void Player::RemoveBallByID(int spawnID)

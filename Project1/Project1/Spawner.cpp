@@ -58,6 +58,11 @@ void Spawner::SpawnWall(sf::Texture * texture, sf::Vector2f size, sf::Vector2f p
 	walls.push_back(Wall(texture, size, position, rotate));
 }
 
+void Spawner::SpawnGameOverScreen(sf::Vector2f size, sf::Vector2f position)
+{
+	gameOverScreen.push_back(GameOverScreen(size, position));
+}
+
 void Spawner::RemovePlayer(int spawnID)
 {
 	for (int i = 0; i < player.size(); i++)
@@ -93,4 +98,9 @@ void Spawner::RemoveBall(int spawnID)
 			enemyBalls.erase(enemyBalls.begin() + i);
 		}
 	}
+}
+
+void Spawner::ReduceHealth()
+{
+	health.erase(health.begin() + health.size()-1);
 }

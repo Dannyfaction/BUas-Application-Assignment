@@ -22,10 +22,10 @@ int main()
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_WIDTH, VIEW_HEIGHT));
 
 	TextureManager::getInstance().LoadTextures();
-	UserInterface::getInstance().LoadUserInterface(window);
 
 	Spawner::getInstance().SpawnPlayer(TextureManager::getInstance().GetPlayerTexture(), sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
 
+	UserInterface::getInstance().LoadUserInterface(window);
 	float const backgroundRows = 5;
 	float const backgroundColumns = 5;
 	float backgroundCenterXOffset = backgroundColumns * 500.0f / 2.0F;
@@ -79,11 +79,13 @@ int main()
 				break;
 			}
 		}
-		//player.Update(deltaTime);
-		Spawner::getInstance().Update(deltaTime);
+		if (!Spawner::getInstance().player[0].GetDeadState()) {
+			//player.Update(deltaTime);
+			Spawner::getInstance().Update(deltaTime);
 
-		waveManager.Update(deltaTime);
-
+			waveManager.Update(deltaTime);
+			UserInterface::getInstance().UpdateUserInterface(window);
+		}
 		sf::Vector2f direction;
 
 		for (Wall& wall : Spawner::getInstance().walls)
@@ -95,7 +97,6 @@ int main()
 
 
 		view.setCenter(Spawner::getInstance().player[0].GetPosition());
-		UserInterface::getInstance().UpdateScreenPosition(window);
 
 		//player.setTextureRect(animation.uvRect);
 
@@ -109,7 +110,8 @@ int main()
 
 		for (Ball& ball : Spawner::getInstance().enemyBalls) {
 			if (ball.GetCollider().CheckCollision(Spawner::getInstance().player[0].GetCollider(), direction, 0.0f)) {
-				//player.OnCollision(direction);
+				//Spawner::getInstance().player[0].OnCollision(direction);
+				Spawner::getInstance().ReduceHealth();
 				ball.OnCollision(direction, Spawner::getInstance().player[0].health);
 			}
 		}
@@ -147,6 +149,9 @@ int main()
 		}
 		for (Health& health : Spawner::getInstance().health) {
 			health.Draw(window);
+		}
+		for (GameOverScreen& gameOverScreen : Spawner::getInstance().gameOverScreen) {
+			gameOverScreen.Draw(window);
 		}
 
 		window.display();

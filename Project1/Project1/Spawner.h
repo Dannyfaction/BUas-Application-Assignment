@@ -6,6 +6,7 @@
 #include "Background.h"
 #include "Wall.h"
 #include "Health.h"
+#include "GameOverScreen.h"
 
 class Spawner
 {
@@ -27,9 +28,13 @@ public:
 	void SpawnBackground(sf::Vector2f size, sf::Vector2f position);
 	void SpawnWall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, bool rotate);
 
+	void SpawnGameOverScreen(sf::Vector2f size, sf::Vector2f position);
+
 	void RemovePlayer(int spawnID);
 	void RemoveEnemy(int spawnID);
 	void RemoveBall(int spawnID);
+
+	void ReduceHealth();
 
 private:
 	Spawner() {}
@@ -45,6 +50,9 @@ public:
 	
 	std::vector<Background> backgrounds;
 	std::vector<Wall> walls;
+
 	std::vector<Health> health;
+
+	std::vector<GameOverScreen> gameOverScreen;
 };
 
