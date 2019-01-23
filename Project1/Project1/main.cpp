@@ -44,7 +44,8 @@ int main()
 	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(-400.0f, 0.0f), true);
 	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(400.0f, 0.0f), true);
 
-	WaveManager waveManager(Spawner::getInstance().player[0].body);
+	Spawner::getInstance().SpawnWaveManager(Spawner::getInstance().player[0].body);
+	//WaveManager waveManager();
 
 	float deltaTime = 0.0f;
 	sf::Clock clock;
@@ -83,7 +84,6 @@ int main()
 			//player.Update(deltaTime);
 			Spawner::getInstance().Update(deltaTime);
 
-			waveManager.Update(deltaTime);
 			UserInterface::getInstance().UpdateUserInterface(window);
 		}
 		sf::Vector2f direction;
@@ -111,8 +111,10 @@ int main()
 		for (Ball& ball : Spawner::getInstance().enemyBalls) {
 			if (ball.GetCollider().CheckCollision(Spawner::getInstance().player[0].GetCollider(), direction, 0.0f)) {
 				//Spawner::getInstance().player[0].OnCollision(direction);
-				Spawner::getInstance().ReduceHealth();
-				ball.OnCollision(direction, Spawner::getInstance().player[0].health);
+				if (Spawner::getInstance().player[0].hitProtectionTimer <= 0) {
+					Spawner::getInstance().ReduceHealth();
+				}
+				ball.OnCollision(direction, Spawner::getInstance().player[0].health, Spawner::getInstance().player[0].hitProtectionTimer);
 			}
 		}
 		for (Ball& ball : Spawner::getInstance().playerBalls) {
@@ -120,7 +122,7 @@ int main()
 			{
 				if (ball.GetCollider().CheckCollision(enemy.GetCollider(), direction, 0.0f)) {
 					//player.OnCollision(direction);
-					ball.OnCollision(direction, enemy.health);
+					ball.OnCollision(direction, enemy.health, enemy.hitProtectionTimer);
 				}
 			}
 		}

@@ -15,6 +15,9 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	this->speed = speed;
 	this->health = health;
 	this->shootCooldown = shootCooldown;
+	shootTimer = 0.0f;
+	hitProtectionTimer = 0.0f;
+
 	isDead = false;
 
 	row = 0;
@@ -44,28 +47,32 @@ Player::~Player()
 
 void Player::Update(float deltaTime)
 {
+	//std::cout << "hitprotectiontimer: " << hitProtectionTimer << "\n";
 	if (health <= 0) {
 		std::cout << "GAME OVER" << "\n";
 		UserInterface::getInstance().LoadGameOverScreen();
 		isDead = true;
 	}
-
-	if(shootTimer > 0.0f)
+	if (hitProtectionTimer > 0) {
+		std::cout << "Decreased the hitprotection which is: " << hitProtectionTimer << " with amount: " << deltaTime << "\n";
+		hitProtectionTimer -= deltaTime;
+	}
+	if(shootTimer > 0)
 	{
 		shootTimer -= deltaTime;
 	}
 
-	if(velocity.x > 0.0f)
+	if(velocity.x > 0)
 	{
 		velocity.x -= speed;
-	}else if(velocity.x < 0.0f)
+	}else if(velocity.x < 0)
 	{
 		velocity.x += speed;
 	}
-	if (velocity.y > 0.0f)
+	if (velocity.y > 0)
 	{
 		velocity.y -= speed;
-	}else if(velocity.y < 0.0f)
+	}else if(velocity.y < 0)
 	{
 		velocity.y += speed;
 	}
@@ -192,25 +199,4 @@ sf::Vector2f Player::DirectionFromAnimationRow()
 	}
 
 	return  direction;
-}
-
-void Player::RemoveSelf()
-{
-	//
-}
-
-void Player::RemoveBallByID(int spawnID)
-{
-	//std::cout << balls.size();
-	std::cout << "I am a Listener with the ID: " << spawnID << " and I'm trying to remove a ball" << "\n";
-	/*
-	for (int i = 0; i < balls.size(); i++)
-	{
-		if (balls[i].GetSpawnID() == spawnID) {
-			std::cout << "Removed ball from player" << "\n";
-			balls.erase(balls.begin() + i);
-		}
-	}*/
-	
-
 }

@@ -8,8 +8,10 @@ WaveManager::WaveManager(sf::RectangleShape &playerBody) : playerBody(playerBody
 {
 	currentWave = 1;
 	elapsedTimeSinceLastWave = 0;
+	elapsedTimeSinceLastEnemy = 0;
 	spawnedEnemiesAmount = 0;
 	waveCooldown = 3.0f;
+	diedEnemiesAmount = 0;
 
 	enemyTexture.loadFromFile("Textures/Enemy_EditedV2.0.png");
 
@@ -19,6 +21,7 @@ WaveManager::WaveManager(sf::RectangleShape &playerBody) : playerBody(playerBody
 
 WaveManager::~WaveManager()
 {
+
 }
 
 void WaveManager::Update(float deltaTime)
@@ -26,8 +29,9 @@ void WaveManager::Update(float deltaTime)
 	elapsedTimeSinceLastWave += deltaTime;
 	elapsedTimeSinceLastEnemy += deltaTime;
 	SpawnWave();
-	for (Enemy& enemy : spawnedEnemies) {
-		enemy.Update(deltaTime);
+
+	if (diedEnemiesAmount >= waveDatas[currentWave - 1].amountOfEnemies) {
+		NextWave();
 	}
 }
 
@@ -48,10 +52,13 @@ void WaveManager::SetWaveData()
 void WaveManager::SpawnWave()
 {
 	//This function gets called every frame and checks whether it can spawn an enemy during a wave
+	//std::cout << "updated \n";
+	//std::cout << "current wave: " << elapsedTimeSinceLastEnemy << "\n";
 	if (currentWave < waveDatas.size())
 	{
 		if (elapsedTimeSinceLastWave > waveCooldown)
 		{
+
 			if (spawnedEnemiesAmount < waveDatas[currentWave - 1].amountOfEnemies)
 			{
 				if (elapsedTimeSinceLastEnemy > waveDatas[currentWave - 1].timeBetweenSpawns)
@@ -64,6 +71,15 @@ void WaveManager::SpawnWave()
 			}
 		}
 	}
+}
+
+void WaveManager::NextWave()
+{
+	//UserInterface spawn Wave counter (currentwave)
+	elapsedTimeSinceLastWave = 0;
+	waveCooldown = 3;
+	currentWave++;
+	diedEnemiesAmount = 0;
 }
 
 void WaveManager::SpawnEnemy()

@@ -16,8 +16,6 @@ public:
 	void Draw(sf::RenderWindow& window);
 	void OnCollision(sf::Vector2f direction);
 	int GetSpawnID() { return spawnID; }
-	void RemoveSelf();
-	void RemoveBallByID(int spawnID);
 
 	sf::Vector2f DirectionFromAnimationRow();
 

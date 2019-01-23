@@ -20,6 +20,7 @@ Enemy::Enemy(sf::Vector2u imageCount, sf::Vector2f position, int rotation, int h
 	body.setTexture(TextureManager::getInstance().GetEnemyTexture());
 
 	shootCooldownTimer = 0;
+	hitProtectionTimer = 0;
 
 	SetTextureRotation(rotation, TextureManager::getInstance().GetEnemyTexture(), imageCount);
 
@@ -39,6 +40,10 @@ void Enemy::Update(float deltaTime)
 {
 	//std::cout << "Mijn ballsize is: " << balls.size() << " en mijn ID is: " << this->spawnID << "\n";
 	shootCooldownTimer += deltaTime;
+
+	if (hitProtectionTimer > 0) {
+		hitProtectionTimer -= deltaTime;
+	}
 
 	//Once the enemy is not on shootcooldown anymore, shoot a snowball
 	if (shootCooldownTimer >= shootCooldown) {
@@ -109,27 +114,7 @@ void Enemy::SetTextureRotation(int rotation, sf::Texture* texture, sf::Vector2u 
 
 void Enemy::RemoveSelf()
 {
-	std::cout << "removed";
+	//notify wavamanager that an enemy has died
+	Spawner::getInstance().waveManager[0].IncreaseDiedEnemiesAmount();
 	Spawner::getInstance().RemoveEnemy(spawnID);
-	//balls.erase(balls.begin());
 }
-
-/*
-void Enemy::RemoveBallByID(int otherSpawnID)
-{
-	std::cout << "I am a Listener with the ID: " << spawnID << " and I'm trying to remove a ball" << "\n";
-	//std::cout << "I am an enemy with the ID: " << spawnID << " and im attempting to remove the ball with the spawn ID: " << _spawnID << " and my ballsSize is: " << balls.size() << " and my health is: " <<  health   << "\n";
-	for (int i = 0; i < balls.size(); i++)
-	{
-		std::cout << "Ik probeer de spawn ID op te halen met de size: " << this->balls.size() << " en mijn ID is: " << spawnID << " en de ID van de ball is" << _spawnID << "\n";
-		if (balls[i].GetSpawnID() == otherSpawnID) {
-			std::cout << "Ik heb de spawn ID opgehaald";
-			std::cout << "Removed ball";
-			balls.erase(balls.begin() + i);
-		}
-	}
-}*/
-
-
-
-

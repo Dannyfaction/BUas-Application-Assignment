@@ -1,4 +1,5 @@
 #include "Spawner.h"
+#include <iostream>
 
 void Spawner::Update(float deltaTime)
 {
@@ -7,8 +8,12 @@ void Spawner::Update(float deltaTime)
 		player[i].Update(deltaTime);
 	}
 
+
+	//std::cout << "Enemies.size() " << enemies.size() << "\n";
+
 	for (int i = 0; i < enemies.size(); i++)
 	{
+		//std::cout << "Enemies.size() " << i << "\n";
 		enemies[i].Update(deltaTime);
 	}
 
@@ -20,6 +25,11 @@ void Spawner::Update(float deltaTime)
 	for (int i = 0; i < enemyBalls.size(); i++)
 	{
 		enemyBalls[i].Update(deltaTime);
+	}
+
+	for (int i = 0; i < waveManager.size(); i++)
+	{
+		waveManager[i].Update(deltaTime);
 	}
 }
 
@@ -56,6 +66,11 @@ void Spawner::SpawnBackground(sf::Vector2f size, sf::Vector2f position)
 void Spawner::SpawnWall(sf::Texture * texture, sf::Vector2f size, sf::Vector2f position, bool rotate)
 {
 	walls.push_back(Wall(texture, size, position, rotate));
+}
+
+void Spawner::SpawnWaveManager(sf::RectangleShape & playerBody)
+{
+	waveManager.push_back(WaveManager(playerBody));
 }
 
 void Spawner::SpawnGameOverScreen(sf::Vector2f size, sf::Vector2f position)

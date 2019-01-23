@@ -10,12 +10,12 @@ public:
 	~WaveManager();
 
 	void Update(float deltaTime);
-
-	std::vector<Enemy> spawnedEnemies;
+	void IncreaseDiedEnemiesAmount() { diedEnemiesAmount++; };
 
 private:
 	void SetWaveData();
 	void SpawnWave();
+	void NextWave();
 	void SpawnEnemy();
 
 	sf::RectangleShape &playerBody;
@@ -29,6 +29,7 @@ private:
 	float elapsedTimeSinceLastEnemy;
 
 	int spawnedEnemiesAmount;
+	int diedEnemiesAmount;
 
 	sf::Texture enemyTexture;
 };

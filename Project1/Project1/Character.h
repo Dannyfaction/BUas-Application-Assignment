@@ -9,6 +9,7 @@ public:
 	~Character();
 
 	int health;
+	float hitProtectionTimer;
 	int spawnID;
 	sf::RectangleShape body;
 	//std::vector<Ball> balls;

@@ -6,6 +6,7 @@
 #include "Background.h"
 #include "Wall.h"
 #include "Health.h"
+#include "WaveManager.h"
 #include "GameOverScreen.h"
 
 class Spawner
@@ -28,6 +29,7 @@ public:
 	void SpawnBackground(sf::Vector2f size, sf::Vector2f position);
 	void SpawnWall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, bool rotate);
 
+	void SpawnWaveManager(sf::RectangleShape &playerBody);
 	void SpawnGameOverScreen(sf::Vector2f size, sf::Vector2f position);
 
 	void RemovePlayer(int spawnID);
@@ -53,6 +55,7 @@ public:
 
 	std::vector<Health> health;
 
+	std::vector<WaveManager> waveManager;
 	std::vector<GameOverScreen> gameOverScreen;
 };
 

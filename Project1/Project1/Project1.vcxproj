@@ -130,6 +130,7 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
+    <ClCompile Include="GlobalEventDispatcher.cpp" />
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Spawner.cpp" />

@@ -10,8 +10,7 @@ public:
 		return instance;
 	}
 
-	//A c++ library for event dispatching https://github.com/wqking/eventpp
-	eventpp::EventDispatcher<int, void(const int &)> dispatcher;
+	void OnEnemyDeath(int spawnID);
 
 private:
 	GlobalEventDispatcher() {}
@@ -19,5 +18,7 @@ private:
 public:
 	GlobalEventDispatcher(GlobalEventDispatcher const&) = delete;
 	void operator=(GlobalEventDispatcher const&) = delete;
+
+
 };
 

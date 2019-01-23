@@ -38,12 +38,14 @@ void Ball::Update(float deltaTime)
 	}
 }
 
-void Ball::OnCollision(sf::Vector2f direction, int &health)
+void Ball::OnCollision(sf::Vector2f direction, int &health, float &hitProtectionTimer)
 {
-	//Decrease health on either the enemy or the player
-	health -= damage;
+	//Decrease health on either the enemy or the player if they're not currently on HitProtection (prevents multiple balls from hitting that target in  the same second)
+	if (hitProtectionTimer <= 0) {
+		health -= damage;
+		hitProtectionTimer = 1.0f;
+	}
 
-	//Remove urself (ball)
 	RemoveSelf();
 
 }

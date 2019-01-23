@@ -8,7 +8,7 @@ public:
 	Ball(sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction);
 	~Ball();
 	void Update(float deltaTime);
-	void OnCollision(sf::Vector2f direction, int &health);
+	void OnCollision(sf::Vector2f direction, int &health, float &hitProtectionTimer);
 	void Draw(sf::RenderWindow& window);
 	int GetSpawnID() { return spawnID; }
 	void RemoveSelf();
