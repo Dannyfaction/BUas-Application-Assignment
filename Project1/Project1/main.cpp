@@ -6,6 +6,7 @@
 #include "Background.h"
 #include "WaveManager.h"
 #include "TextureManager.h"
+#include "FontManager.h"
 #include "UserInterface.h"
 
 static const float VIEW_WIDTH = 900.0f;
@@ -22,6 +23,7 @@ int main()
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_WIDTH, VIEW_HEIGHT));
 
 	TextureManager::getInstance().LoadTextures();
+	FontManager::getInstance().LoadFonts();
 
 	Spawner::getInstance().SpawnPlayer(TextureManager::getInstance().GetPlayerTexture(), sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
 
@@ -151,6 +153,9 @@ int main()
 		}
 		for (Health& health : Spawner::getInstance().health) {
 			health.Draw(window);
+		}
+		for (WaveText& waveText : Spawner::getInstance().waveText) {
+			waveText.Draw(window);
 		}
 		for (GameOverScreen& gameOverScreen : Spawner::getInstance().gameOverScreen) {
 			gameOverScreen.Draw(window);

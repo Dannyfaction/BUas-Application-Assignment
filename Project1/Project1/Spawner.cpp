@@ -8,12 +8,8 @@ void Spawner::Update(float deltaTime)
 		player[i].Update(deltaTime);
 	}
 
-
-	//std::cout << "Enemies.size() " << enemies.size() << "\n";
-
 	for (int i = 0; i < enemies.size(); i++)
 	{
-		//std::cout << "Enemies.size() " << i << "\n";
 		enemies[i].Update(deltaTime);
 	}
 
@@ -30,6 +26,11 @@ void Spawner::Update(float deltaTime)
 	for (int i = 0; i < waveManager.size(); i++)
 	{
 		waveManager[i].Update(deltaTime);
+	}
+
+	for (int i = 0; i < waveText.size(); i++)
+	{
+		waveText[i].Update(deltaTime);
 	}
 }
 
@@ -78,6 +79,11 @@ void Spawner::SpawnGameOverScreen(sf::Vector2f size, sf::Vector2f position)
 	gameOverScreen.push_back(GameOverScreen(size, position));
 }
 
+void Spawner::SpawnWaveText(int size, sf::Vector2f position, std::string message, sf::Color color)
+{
+	waveText.push_back(WaveText(size, position, message, color));
+}
+
 void Spawner::RemovePlayer(int spawnID)
 {
 	for (int i = 0; i < player.size(); i++)
@@ -118,4 +124,9 @@ void Spawner::RemoveBall(int spawnID)
 void Spawner::ReduceHealth()
 {
 	health.erase(health.begin() + health.size()-1);
+}
+
+void Spawner::RemoveWaveText()
+{
+	waveText.erase(waveText.begin());
 }

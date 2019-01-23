@@ -8,6 +8,7 @@
 #include "Health.h"
 #include "WaveManager.h"
 #include "GameOverScreen.h"
+#include "WaveText.h"
 
 class Spawner
 {
@@ -32,11 +33,15 @@ public:
 	void SpawnWaveManager(sf::RectangleShape &playerBody);
 	void SpawnGameOverScreen(sf::Vector2f size, sf::Vector2f position);
 
+	void SpawnWaveText(int size, sf::Vector2f position, std::string message, sf::Color color);
+
 	void RemovePlayer(int spawnID);
 	void RemoveEnemy(int spawnID);
 	void RemoveBall(int spawnID);
 
 	void ReduceHealth();
+
+	void RemoveWaveText();
 
 private:
 	Spawner() {}
@@ -57,5 +62,7 @@ public:
 
 	std::vector<WaveManager> waveManager;
 	std::vector<GameOverScreen> gameOverScreen;
+
+	std::vector<WaveText> waveText;
 };
 

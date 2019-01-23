@@ -1,3 +1,2 @@
-﻿  main.cpp
-e:\github\buas application assignment\project1\project1\main.cpp(21): warning C4244: 'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+﻿  FontManager.cpp
   Project1.vcxproj -> E:\Github\BUas Application Assignment\Project1\Debug\Project1.exe

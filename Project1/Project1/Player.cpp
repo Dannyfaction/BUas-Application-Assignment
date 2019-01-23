@@ -27,19 +27,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	body.setOrigin(body.getSize() /2.0f);
 	body.setPosition(0.0f, 0.0f);
 	body.setTexture(texture);
-
-
-	/*
-	GlobalEventDispatcher::getInstance().dispatcher.appendListener(1, [](const int & otherSpawnID) {
-		RemoveBallByID(otherSpawnID);
-	});
-	std::cout << "Appended enemy listener for possible ball remove with my ID: " << spawnID << "\n";
-
-	GlobalEventDispatcher::getInstance().dispatcher.appendListener(2, [this](const int & spawnID) {
-		RemoveBallByID(spawnID);
-	});*/
 }
-
 
 Player::~Player()
 {
@@ -54,7 +42,6 @@ void Player::Update(float deltaTime)
 		isDead = true;
 	}
 	if (hitProtectionTimer > 0) {
-		std::cout << "Decreased the hitprotection which is: " << hitProtectionTimer << " with amount: " << deltaTime << "\n";
 		hitProtectionTimer -= deltaTime;
 	}
 	if(shootTimer > 0)

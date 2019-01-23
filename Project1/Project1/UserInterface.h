@@ -14,6 +14,9 @@ public:
 	void UpdateUserInterface(sf::RenderWindow& window);
 	void LoadGameOverScreen();
 
+	void SpawnHealth();
+	void SpawnWaveText(int currentWave);
+
 	//sf::Vector2f GetTopLeftScreenPosition() { return topLeftScreenPosition; }
 
 private:
@@ -25,8 +28,7 @@ public:
 
 private:
 	std::vector<sf::RectangleShape> healthBar;
-	//sf::RectangleShape body;
-	sf::Text waveText;
+
 	sf::Vector2f topLeftScreenPosition;
 
 	sf::Vector2f heartSize;

@@ -2,20 +2,22 @@
 #include <iostream>
 #include <random>
 #include "Spawner.h"
+#include "UserInterface.h"
 
 
 WaveManager::WaveManager(sf::RectangleShape &playerBody) : playerBody(playerBody)
 {
-	currentWave = 1;
+	currentWave = 0;
 	elapsedTimeSinceLastWave = 0;
 	elapsedTimeSinceLastEnemy = 0;
 	spawnedEnemiesAmount = 0;
-	waveCooldown = 3.0f;
+	waveCooldown = 0.0f;
 	diedEnemiesAmount = 0;
 
 	enemyTexture.loadFromFile("Textures/Enemy_EditedV2.0.png");
 
 	SetWaveData();
+	NextWave();
 }
 
 
@@ -80,6 +82,7 @@ void WaveManager::NextWave()
 	waveCooldown = 3;
 	currentWave++;
 	diedEnemiesAmount = 0;
+	UserInterface::getInstance().SpawnWaveText(currentWave);
 }
 
 void WaveManager::SpawnEnemy()
