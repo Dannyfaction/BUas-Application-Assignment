@@ -14,6 +14,7 @@ public:
 	void UpdateUserInterface(sf::RenderWindow& window);
 	void LoadGameOverScreen();
 
+	void SpawnHowToPlay();
 	void SpawnHealth();
 	void SpawnWaveText(int currentWave);
 	void SpawnGameEnd();
@@ -34,6 +35,7 @@ private:
 
 	sf::Vector2f heartSize;
 	sf::Vector2f heartOffset;
+	sf::Vector2f howToPlayOffset;
 	sf::Vector2f textOffset;
 	sf::Vector2f heartPosition;
 };

@@ -32,6 +32,11 @@ void Spawner::Update(float deltaTime)
 	{
 		waveText[i].Update(deltaTime);
 	}
+
+	for (int i = 0; i < howToPlay.size(); i++)
+	{
+		howToPlay[i].Update(deltaTime);
+	}
 }
 
 void Spawner::SpawnPlayer(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, int health, float shootCooldown)
@@ -89,6 +94,11 @@ void Spawner::SpawnGameEndText(int size, sf::Vector2f position, std::string mess
 	gameEndText.push_back(GameEndText(size, position, message, color));
 }
 
+void Spawner::SpawnHowToPlay(sf::Vector2f size, sf::Vector2f position)
+{
+	howToPlay.push_back(HowToPlay(size, position));
+}
+
 void Spawner::RemovePlayer(int spawnID)
 {
 	for (int i = 0; i < player.size(); i++)
@@ -134,4 +144,9 @@ void Spawner::ReduceHealth()
 void Spawner::RemoveWaveText()
 {
 	waveText.erase(waveText.begin());
+}
+
+void Spawner::RemoveHowToPlay()
+{
+	howToPlay.erase(howToPlay.begin());
 }

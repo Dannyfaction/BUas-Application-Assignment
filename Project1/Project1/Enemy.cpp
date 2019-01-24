@@ -1,6 +1,5 @@
 #include "Enemy.h"
 #include <iostream>
-//#include "GlobalEventDispatcher.h"
 #include "SpawnID.h"
 #include "Spawner.h"
 #include "TextureManager.h"
@@ -8,7 +7,6 @@
 Enemy::Enemy(sf::Vector2u imageCount, sf::Vector2f position, int rotation, int health, float shootCooldown) 
 {
 	spawnID = SpawnID::getInstance().GetNewID();
-	std::cout << "Spawned enemy with ID: " << spawnID << "\n";
 
 	this->shootCooldown = shootCooldown;
 	this->health = health;

@@ -8,7 +8,6 @@
 Ball::Ball(sf::Vector2f size, sf::Vector2f position, sf::Vector2f direction)
 {
 	spawnID = SpawnID::getInstance().GetNewID();
-	std::cout << "Spawned ball with ID: " << spawnID << "\n";
 
 	body.setSize(size);
 	body.setOrigin(size / 2.0f);

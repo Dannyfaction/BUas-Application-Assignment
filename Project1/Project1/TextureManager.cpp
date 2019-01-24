@@ -22,4 +22,7 @@ void TextureManager::LoadTextures()
 
 	//Game over sprite found with a google image search https://pngimage.net/wp-content/uploads/2018/06/game-over-png-2.png
 	gameOverTexture.loadFromFile("Textures/Game_Over.png");
+
+	//How to play screen made by combining a google image search with some text https://banner2.kisspng.com/20180428/lsq/kisspng-computer-keyboard-arrow-keys-button-5ae45eafeaa9c8.2224414015249158879612.jpg
+	howToPlayTexture.loadFromFile("Textures/How_To_Play.png");
 }

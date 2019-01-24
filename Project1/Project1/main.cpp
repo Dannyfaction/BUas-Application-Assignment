@@ -161,6 +161,9 @@ int main()
 		for (GameEndText& gameEndText : Spawner::getInstance().gameEndText) {
 			gameEndText.Draw(window);
 		}
+		for (HowToPlay& howToPlay : Spawner::getInstance().howToPlay) {
+			howToPlay.Draw(window);
+		}
 
 		window.display();
 	}

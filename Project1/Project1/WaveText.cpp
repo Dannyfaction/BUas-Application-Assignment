@@ -1,7 +1,6 @@
 #include "WaveText.h"
 #include "Spawner.h"
 #include "FontManager.h"
-#include <iostream>
 
 
 WaveText::WaveText(int size, sf::Vector2f position, std::string message, sf::Color color)
@@ -32,6 +31,5 @@ void WaveText::Update(float deltaTime)
 	lifetime += deltaTime;
 	if (lifetime >= maxLifetime) {
 		Spawner::getInstance().RemoveWaveText();
-		std::cout << "removed text \n";
 	}
 }

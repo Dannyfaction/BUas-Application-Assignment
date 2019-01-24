@@ -8,8 +8,10 @@ void UserInterface::LoadUserInterface(sf::RenderWindow& window)
 	heartSize = sf::Vector2f(75, 75);
 	heartOffset = sf::Vector2f(20, 20);
 	textOffset = sf::Vector2f(0, -200);
+	howToPlayOffset = sf::Vector2f(300, -300);
 	heartPosition = sf::Vector2f(topLeftScreenPosition.x + heartSize.x / 2 + heartOffset.x, topLeftScreenPosition.y + heartSize.y / 2 + heartOffset.y);
 
+	SpawnHowToPlay();
 	SpawnHealth();
 }
 
@@ -29,12 +31,23 @@ void UserInterface::UpdateUserInterface(sf::RenderWindow & window)
 	{
 		Spawner::getInstance().waveText[i].text.setPosition(Spawner::getInstance().player[0].body.getPosition() + textOffset);
 	}
+
+	for (int i = 0; i < Spawner::getInstance().howToPlay.size(); i++)
+	{
+		Spawner::getInstance().howToPlay[i].body.setPosition(Spawner::getInstance().player[0].body.getPosition() + howToPlayOffset);
+	}
 }
 
 void UserInterface::LoadGameOverScreen()
 {
 	sf::Vector2f gameOverScreenSize = sf::Vector2f(800, 500);
 	Spawner::getInstance().SpawnGameOverScreen(gameOverScreenSize, Spawner::getInstance().player[0].body.getPosition());
+}
+
+void UserInterface::SpawnHowToPlay()
+{
+	sf::Vector2f howToPlaySize = sf::Vector2f(500, 300);
+	Spawner::getInstance().SpawnHowToPlay(howToPlaySize, howToPlayOffset);
 }
 
 void UserInterface::SpawnHealth()

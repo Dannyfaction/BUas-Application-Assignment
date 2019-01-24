@@ -18,6 +18,7 @@ public:
 	sf::Texture* GetWallTexture() { return &wallTexture; }
 	sf::Texture* GetHeartTexture() { return &heartTexture; }
 	sf::Texture* GetGameOverTexture() { return &gameOverTexture; }
+	sf::Texture* GetHowToPlayTexture() { return &howToPlayTexture; }
 
 
 private:
@@ -37,6 +38,8 @@ private:
 
 	sf::Texture heartTexture;
 	sf::Texture gameOverTexture;
+
+	sf::Texture howToPlayTexture;
 
 };
 

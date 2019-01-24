@@ -1,16 +1,12 @@
 #include "Player.h"
-#include <iostream>
-//#include "GlobalEventDispatcher.h"
 #include "SpawnID.h"
 #include "Spawner.h"
-#include "TextureManager.h"
 #include "UserInterface.h"
 
 Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, int health, float shootCooldown) :
 	animation(texture, imageCount, switchTime)
 {
 	spawnID = SpawnID::getInstance().GetNewID();
-	std::cout << "Spawned player with ID: " << spawnID << "\n";
 
 	this->speed = speed;
 	this->health = health;
@@ -23,7 +19,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	row = 0;
 	faceRight = true;
 
-	body.setSize(sf::Vector2f(100.0f, 100.0f));
+	body.setSize(sf::Vector2f(85.0f, 85.0f));
 	body.setOrigin(body.getSize() /2.0f);
 	body.setPosition(0.0f, 0.0f);
 	body.setTexture(texture);
@@ -37,7 +33,6 @@ void Player::Update(float deltaTime)
 {
 	//std::cout << "hitprotectiontimer: " << hitProtectionTimer << "\n";
 	if (health <= 0) {
-		std::cout << "GAME OVER" << "\n";
 		UserInterface::getInstance().LoadGameOverScreen();
 		isDead = true;
 	}

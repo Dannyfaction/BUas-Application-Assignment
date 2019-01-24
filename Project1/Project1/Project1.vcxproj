@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\Github\BUas Application Assignment\Project1\boost;E:\Github\BUas Application Assignment\Project1\sfml\include;E:\Github\BUas Application Assignment\Project1\eventpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Github\BUas Application Assignment\Project1\sfml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>sfml-system-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -132,8 +132,8 @@
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameEndText.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
-    <ClCompile Include="GlobalEventDispatcher.cpp" />
     <ClCompile Include="Health.cpp" />
+    <ClCompile Include="HowToPlay.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="SpawnID.cpp" />
@@ -155,8 +155,8 @@
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameEndText.h" />
     <ClInclude Include="GameOverScreen.h" />
-    <ClInclude Include="GlobalEventDispatcher.h" />
     <ClInclude Include="Health.h" />
+    <ClInclude Include="HowToPlay.h" />
     <ClInclude Include="Spawner.h" />
     <ClInclude Include="SpawnID.h" />
     <ClInclude Include="TextureManager.h" />
