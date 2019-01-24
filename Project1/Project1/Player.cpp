@@ -67,25 +67,25 @@ void Player::Update(float deltaTime)
 	//velocity.y *= 0.5f;
 
 	//Change the velocity of the player once a movement key has been pressed
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))) {
 		if(velocity.y > -speed)
 		{
 			velocity.y -= speed;
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))){
 		if (velocity.x > -speed)
 		{
 			velocity.x -= speed;
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))) {
 		if (velocity.y < speed)
 		{
 			velocity.y += speed;
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))) {
 		if (velocity.x < speed)
 		{
 			velocity.x += speed;

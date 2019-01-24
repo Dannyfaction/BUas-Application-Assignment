@@ -1,2 +1,26 @@
-﻿  FontManager.cpp
+﻿  TextureManager.cpp
+  WaveManager.cpp
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(64): warning C4018: '<=': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(96): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(113): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(116): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(119): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(122): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Generating Code...
   Project1.vcxproj -> E:\Github\BUas Application Assignment\Project1\Debug\Project1.exe

@@ -10,8 +10,9 @@ public:
 	void Draw(sf::RenderWindow& window);
 	void Update(float deltaTime);
 
-private:
 	sf::Text text;
+
+private:
 
 	float lifetime;
 	float maxLifetime;

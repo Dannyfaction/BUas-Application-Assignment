@@ -3,7 +3,7 @@
 void TextureManager::LoadTextures()
 {
 	//Player texture and animations is an edited version of this Character https://opengameart.org/content/alternate-lpc-character-sprites-george
-	playerTexture.loadFromFile("Textures/George_Edited.png");
+	playerTexture.loadFromFile("Textures/George_EditedV2.0.png");
 
 	enemyTexture.loadFromFile("Textures/Enemy_EditedV2.0.png");
 
@@ -11,7 +11,7 @@ void TextureManager::LoadTextures()
 	ballTexture.loadFromFile("Textures/Snowball.png");
 
 	//Seamless Background Texture found with a google image search https://sftextures.com/wp-content/plugins/sf-textures-plugin/sf-textures-preview.php?tiling=Seamless&image=https://sftextures.com/wp-content/uploads/2015/01/snow-white-rough-air-fresh-light-frozen-frosty-ground-clear-seamless-texture-256x256.jpg
-	backgroundTexture.loadFromFile("Textures/Seamless_Snow.jpg");
+	backgroundTexture.loadFromFile("Textures/Seamless_SnowV2.0.jpg");
 
 	//Wall Texture is an edited version of the following image which was found with a google image search https://www.kisspng.com/png-ice-cube-stock-photography-royalty-free-blue-crush-182395/
 	wallTexture.loadFromFile("Textures/Ice_Wall.png");

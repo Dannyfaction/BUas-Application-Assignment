@@ -45,10 +45,13 @@ void WaveManager::SetWaveData()
 	waveDatas.push_back(WaveData(3, 3.0f, 100, 3.0f));
 
 	//Wave 2
-	waveDatas.push_back(WaveData(8, 2.0f, 200, 2.5f));
+	waveDatas.push_back(WaveData(5, 4.5f, 200, 2.5f));
 
 	//Wave 3
-	waveDatas.push_back(WaveData(12, 1.0f, 300, 2.0f));
+	waveDatas.push_back(WaveData(6, 6.0f, 300, 2.0f));
+
+	//Wave 4 (final)
+	waveDatas.push_back(WaveData(8, 6.0f, 300, 1.75f));
 }
 
 void WaveManager::SpawnWave()
@@ -56,18 +59,18 @@ void WaveManager::SpawnWave()
 	//This function gets called every frame and checks whether it can spawn an enemy during a wave
 	//std::cout << "updated \n";
 	//std::cout << "current wave: " << elapsedTimeSinceLastEnemy << "\n";
-	if (currentWave < waveDatas.size())
+	//std::cout << "Current wave: " << currentWave << " with current # enemies: " << waveDatas[currentWave - 1].amountOfEnemies << " and killed: " << diedEnemiesAmount << "\n";
+	//std::cout << "Current wave: " << currentWave << " with current # enemies: " << "\n";
+	if (currentWave <= waveDatas.size())
 	{
 		if (elapsedTimeSinceLastWave > waveCooldown)
 		{
-
 			if (spawnedEnemiesAmount < waveDatas[currentWave - 1].amountOfEnemies)
 			{
 				if (elapsedTimeSinceLastEnemy > waveDatas[currentWave - 1].timeBetweenSpawns)
 				{
 					spawnedEnemiesAmount++;
 					elapsedTimeSinceLastEnemy = 0;
-					std::cout << "Spawned enemy: " << spawnedEnemiesAmount << ". with total time of: " << elapsedTimeSinceLastWave << "\n";
 					SpawnEnemy();
 				}
 			}
@@ -81,6 +84,7 @@ void WaveManager::NextWave()
 	elapsedTimeSinceLastWave = 0;
 	waveCooldown = 3;
 	currentWave++;
+	spawnedEnemiesAmount = 0;
 	diedEnemiesAmount = 0;
 	UserInterface::getInstance().SpawnWaveText(currentWave);
 }

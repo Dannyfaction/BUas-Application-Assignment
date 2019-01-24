@@ -33,5 +33,6 @@ private:
 
 	sf::Vector2f heartSize;
 	sf::Vector2f heartOffset;
+	sf::Vector2f waveTextOffset;
 	sf::Vector2f heartPosition;
 };
