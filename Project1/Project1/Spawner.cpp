@@ -84,6 +84,11 @@ void Spawner::SpawnWaveText(int size, sf::Vector2f position, std::string message
 	waveText.push_back(WaveText(size, position, message, color));
 }
 
+void Spawner::SpawnGameEndText(int size, sf::Vector2f position, std::string message, sf::Color color)
+{
+	gameEndText.push_back(GameEndText(size, position, message, color));
+}
+
 void Spawner::RemovePlayer(int spawnID)
 {
 	for (int i = 0; i < player.size(); i++)

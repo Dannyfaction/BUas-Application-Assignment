@@ -76,18 +76,15 @@ int main()
 				window.close();
 				break;
 			case sf::Event::Resized:
-				//std::cout << "New window width: " << evnt.size.width << " New window height: " << evnt.size.height << std::endl;
-				//printf("New window width: %i New window height: %i\n", evnt.size.width, evnt.size.height);
 				ResizeView(window, view);
 				break;
 			}
 		}
-		if (!Spawner::getInstance().player[0].GetDeadState()) {
-			//player.Update(deltaTime);
+		if (!Spawner::getInstance().player[0].GetDeadState() && Spawner::getInstance().gameEndText.size() <= 0){
 			Spawner::getInstance().Update(deltaTime);
-
 			UserInterface::getInstance().UpdateUserInterface(window);
 		}
+
 		sf::Vector2f direction;
 
 		for (Wall& wall : Spawner::getInstance().walls)
@@ -132,15 +129,16 @@ int main()
 		window.clear(sf::Color(150, 150, 150));
 		window.setView(view);
 
+		//Draw all spawnable objects on the screen
 		for (Background& background : Spawner::getInstance().backgrounds) {
 			background.Draw(window);
 		}
 		for (Wall& wall : Spawner::getInstance().walls) {
 			wall.Draw(window);
 		}
-
-		Spawner::getInstance().player[0].Draw(window);
-
+		for (Player& player : Spawner::getInstance().player) {
+			player.Draw(window);
+		}
 		for (Enemy& enemy : Spawner::getInstance().enemies)
 		{
 			enemy.Draw(window);
@@ -159,6 +157,9 @@ int main()
 		}
 		for (GameOverScreen& gameOverScreen : Spawner::getInstance().gameOverScreen) {
 			gameOverScreen.Draw(window);
+		}
+		for (GameEndText& gameEndText : Spawner::getInstance().gameEndText) {
+			gameEndText.Draw(window);
 		}
 
 		window.display();

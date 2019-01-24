@@ -11,7 +11,7 @@ public:
 	}
 
 	void LoadFonts();
-	sf::Font* GetWaveFont() { return &waveFont; }
+	sf::Font* GetTextFont() { return &textFont; }
 
 
 
@@ -23,5 +23,5 @@ public:
 	void operator=(FontManager const&) = delete;
 
 private:
-	sf::Font waveFont;
+	sf::Font textFont;
 };

@@ -10,7 +10,7 @@ WaveText::WaveText(int size, sf::Vector2f position, std::string message, sf::Col
 	text.setPosition(position);
 	text.setString(message);
 	text.setFillColor(color);
-	text.setFont(*FontManager::getInstance().GetWaveFont());
+	text.setFont(*FontManager::getInstance().GetTextFont());
 	text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
 
 	lifetime = 0;

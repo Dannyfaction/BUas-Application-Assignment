@@ -16,6 +16,7 @@ public:
 
 	void SpawnHealth();
 	void SpawnWaveText(int currentWave);
+	void SpawnGameEnd();
 
 	//sf::Vector2f GetTopLeftScreenPosition() { return topLeftScreenPosition; }
 
@@ -33,6 +34,6 @@ private:
 
 	sf::Vector2f heartSize;
 	sf::Vector2f heartOffset;
-	sf::Vector2f waveTextOffset;
+	sf::Vector2f textOffset;
 	sf::Vector2f heartPosition;
 };

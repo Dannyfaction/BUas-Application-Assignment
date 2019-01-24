@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Ball.h"
 
 class Character
 {
@@ -12,5 +11,4 @@ public:
 	float hitProtectionTimer;
 	int spawnID;
 	sf::RectangleShape body;
-	//std::vector<Ball> balls;
 };

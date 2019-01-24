@@ -9,6 +9,7 @@
 #include "WaveManager.h"
 #include "GameOverScreen.h"
 #include "WaveText.h"
+#include "GameEndText.h"
 
 class Spawner
 {
@@ -34,6 +35,7 @@ public:
 	void SpawnGameOverScreen(sf::Vector2f size, sf::Vector2f position);
 
 	void SpawnWaveText(int size, sf::Vector2f position, std::string message, sf::Color color);
+	void SpawnGameEndText(int size, sf::Vector2f position, std::string message, sf::Color color);
 
 	void RemovePlayer(int spawnID);
 	void RemoveEnemy(int spawnID);
@@ -64,5 +66,6 @@ public:
 	std::vector<GameOverScreen> gameOverScreen;
 
 	std::vector<WaveText> waveText;
+	std::vector<GameEndText> gameEndText;
 };
 

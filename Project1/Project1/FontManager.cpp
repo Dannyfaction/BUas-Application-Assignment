@@ -3,7 +3,7 @@
 
 void FontManager::LoadFonts()
 {
-	if (!waveFont.loadFromFile("Fonts/arial.ttf")) {
+	if (!textFont.loadFromFile("Fonts/arial.ttf")) {
 		std::cout << "couldn't load font \n";
 	}
 }
