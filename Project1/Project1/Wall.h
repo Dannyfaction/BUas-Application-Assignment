@@ -13,7 +13,4 @@ public:
 
 private:
 	sf::RectangleShape body;
-
-	//sf::Sprite wallSprite;
 };
-

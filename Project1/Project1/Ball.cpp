@@ -1,6 +1,4 @@
 #include "Ball.h"
-#include <iostream>
-//#include "GlobalEventDispatcher.h"
 #include "SpawnID.h"
 #include "Spawner.h"
 #include "TextureManager.h"

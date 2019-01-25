@@ -12,6 +12,7 @@
 static const float VIEW_WIDTH = 900.0f;
 static const float VIEW_HEIGHT = 900.0f;
 
+//Whenever the window gets resized, prevent the window from being stretched out
 void ResizeView(sf::RenderWindow& window, sf::View& view) {
 	float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
 	view.setSize(VIEW_WIDTH * aspectRatio, VIEW_HEIGHT);
@@ -19,7 +20,7 @@ void ResizeView(sf::RenderWindow& window, sf::View& view) {
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(VIEW_WIDTH, VIEW_HEIGHT), "Project1", sf::Style::Close | sf::Style::Resize);
+	sf::RenderWindow window(sf::VideoMode(VIEW_WIDTH, VIEW_HEIGHT), "Snowball Battle", sf::Style::Close | sf::Style::Resize);
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_WIDTH, VIEW_HEIGHT));
 
 	TextureManager::getInstance().LoadTextures();

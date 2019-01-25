@@ -13,8 +13,6 @@ public:
 	void LoadFonts();
 	sf::Font* GetTextFont() { return &textFont; }
 
-
-
 private:
 	FontManager() {}
 

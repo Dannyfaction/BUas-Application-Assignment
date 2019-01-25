@@ -15,7 +15,6 @@
 class Spawner
 {
 public:
-	//Singleton written with the help of this Stackoverflow answer https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
 	static Spawner &getInstance() {
 		static Spawner instance;
 		return instance;

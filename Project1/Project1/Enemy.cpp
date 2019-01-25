@@ -1,5 +1,4 @@
 #include "Enemy.h"
-#include <iostream>
 #include "SpawnID.h"
 #include "Spawner.h"
 #include "TextureManager.h"
@@ -21,13 +20,6 @@ Enemy::Enemy(sf::Vector2u imageCount, sf::Vector2f position, int rotation, int h
 	hitProtectionTimer = 0;
 
 	SetTextureRotation(rotation, TextureManager::getInstance().GetEnemyTexture(), imageCount);
-
-	/*
-	GlobalEventDispatcher::getInstance().dispatcher.appendListener(1, [this](const int & otherSpawnID) {
-		RemoveBallByID(otherSpawnID);
-	});
-	std::cout << "Appended enemy listener for possible ball remove with my ID: " << spawnID << "\n";
-	*/
 }
 
 Enemy::~Enemy()
@@ -36,7 +28,6 @@ Enemy::~Enemy()
 
 void Enemy::Update(float deltaTime)
 {
-	//std::cout << "Mijn ballsize is: " << balls.size() << " en mijn ID is: " << this->spawnID << "\n";
 	shootCooldownTimer += deltaTime;
 
 	if (hitProtectionTimer > 0) {
@@ -45,6 +36,7 @@ void Enemy::Update(float deltaTime)
 
 	//Once the enemy is not on shootcooldown anymore, shoot a snowball
 	if (shootCooldownTimer >= shootCooldown) {
+
 		//The direction the ball is going to be 'thrown' in
 		target = Spawner::getInstance().player[0].body;
 		sf::Vector2f targetDirection = sf::Vector2f(target.getPosition() - body.getPosition());
@@ -53,18 +45,12 @@ void Enemy::Update(float deltaTime)
 		float length = sqrt((targetDirection.x * targetDirection.x) + (targetDirection.y * targetDirection.y));
 		targetDirection = sf::Vector2f(targetDirection.x / length, targetDirection.y / length);
 
-		//Spawn a snowball with the following information; Texture, Size, Position, Direction
-		//balls.push_back(Ball(&ballTexture, sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), targetDirection));
+		//Spawn a snowball with the following information; Size, Position, Direction
 		Spawner::getInstance().SpawnEnemyBall(sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), targetDirection);
 
 		//Reset the cooldown timer
 		shootCooldownTimer = 0;
 	}
-
-	/*
-	for (Ball& ball : balls) {
-		ball.Update(deltaTime);
-	}*/
 
 	if (health <= 0) {
 		RemoveSelf();
@@ -76,6 +62,7 @@ void Enemy::Draw(sf::RenderWindow& window)
 	window.draw(body);
 }
 
+//Makes the enemy face towards the center of the playing field
 void Enemy::SetTextureRotation(int rotation, sf::Texture* texture, sf::Vector2u imageCount)
 {
 	sf::IntRect uvRect;
@@ -112,7 +99,6 @@ void Enemy::SetTextureRotation(int rotation, sf::Texture* texture, sf::Vector2u 
 
 void Enemy::RemoveSelf()
 {
-	//notify wavamanager that an enemy has died
 	Spawner::getInstance().waveManager[0].IncreaseDiedEnemiesAmount();
 	Spawner::getInstance().RemoveEnemy(spawnID);
 }

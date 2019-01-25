@@ -1,83 +1,33 @@
-﻿  Ball.cpp
-e:\github\buas application assignment\project1\project1\ball.cpp(45): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+﻿  Animation.cpp
+e:\github\buas application assignment\project1\project1\animation.cpp(12): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+e:\github\buas application assignment\project1\project1\animation.cpp(13): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+  Ball.cpp
+e:\github\buas application assignment\project1\project1\ball.cpp(42): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
   Enemy.cpp
-e:\github\buas application assignment\project1\project1\enemy.cpp(86): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+e:\github\buas application assignment\project1\project1\enemy.cpp(71): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
           with
           [
               T=int
           ]
-e:\github\buas application assignment\project1\project1\enemy.cpp(87): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+e:\github\buas application assignment\project1\project1\enemy.cpp(72): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
           with
           [
               T=int
           ]
+  FontManager.cpp
   GameEndText.cpp
+  Health.cpp
   HowToPlay.cpp
-  Player.cpp
-e:\github\buas application assignment\project1\project1\player.cpp(91): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-e:\github\buas application assignment\project1\project1\player.cpp(98): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
-e:\github\buas application assignment\project1\project1\player.cpp(100): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-  Spawner.cpp
-e:\github\buas application assignment\project1\project1\spawner.cpp(6): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(11): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(16): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(21): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(26): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(31): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(36): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(104): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(114): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(124): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\spawner.cpp(131): warning C4018: '<': signed/unsigned mismatch
-  UserInterface.cpp
-e:\github\buas application assignment\project1\project1\userinterface.cpp(7): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-          and
-          [
-              T=float
-          ]
-e:\github\buas application assignment\project1\project1\userinterface.cpp(21): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-          and
-          [
-              T=float
-          ]
-e:\github\buas application assignment\project1\project1\userinterface.cpp(25): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\userinterface.cpp(30): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\userinterface.cpp(35): warning C4018: '<': signed/unsigned mismatch
-  WaveManager.cpp
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(60): warning C4018: '<=': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(79): warning C4018: '<': signed/unsigned mismatch
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(97): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(114): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(117): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(120): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-e:\github\buas application assignment\project1\project1\wavemanager.cpp(123): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
   WaveText.cpp
   main.cpp
-e:\github\buas application assignment\project1\project1\main.cpp(22): warning C4244: 'argument': conversion from 'const float' to 'unsigned int', possible loss of data
+e:\github\buas application assignment\project1\project1\main.cpp(23): warning C4244: 'argument': conversion from 'const float' to 'unsigned int', possible loss of data
   Generating Code...
-  LINK : E:\Github\BUas Application Assignment\Project1\Debug\Project1.exe not found or not built by the last incremental link; performing full link
   Project1.vcxproj -> E:\Github\BUas Application Assignment\Project1\Debug\Project1.exe

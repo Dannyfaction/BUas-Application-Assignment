@@ -1,8 +1,5 @@
 #include "GameEndText.h"
-#include "Spawner.h"
 #include "FontManager.h"
-#include <iostream>
-
 
 GameEndText::GameEndText(int size, sf::Vector2f position, std::string message, sf::Color color)
 {

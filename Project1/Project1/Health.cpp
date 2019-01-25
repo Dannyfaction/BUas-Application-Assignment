@@ -10,7 +10,6 @@ Health::Health(sf::Vector2f size, sf::Vector2f position)
 	body.setPosition(position);
 }
 
-
 Health::~Health()
 {
 }
@@ -18,5 +17,4 @@ Health::~Health()
 void Health::Draw(sf::RenderWindow & window)
 {
 	window.draw(body);
-	//window.draw(wallSprite);
 }

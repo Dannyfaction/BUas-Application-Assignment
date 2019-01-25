@@ -2,8 +2,6 @@
 #include "TextureManager.h"
 #include "Spawner.h"
 
-
-
 HowToPlay::HowToPlay(sf::Vector2f size, sf::Vector2f position)
 {
 	lifetime = 0;
@@ -14,7 +12,6 @@ HowToPlay::HowToPlay(sf::Vector2f size, sf::Vector2f position)
 	body.setTexture(TextureManager::getInstance().GetHowToPlayTexture());
 	body.setPosition(position);
 }
-
 
 HowToPlay::~HowToPlay()
 {

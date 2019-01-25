@@ -19,8 +19,6 @@ public:
 	void SpawnWaveText(int currentWave);
 	void SpawnGameEnd();
 
-	//sf::Vector2f GetTopLeftScreenPosition() { return topLeftScreenPosition; }
-
 private:
 	UserInterface() {}
 
