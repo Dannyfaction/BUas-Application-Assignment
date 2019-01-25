@@ -25,5 +25,4 @@ Wall::~Wall()
 void Wall::Draw(sf::RenderWindow & window)
 {
 	window.draw(body);
-	//window.draw(wallSprite);
 }

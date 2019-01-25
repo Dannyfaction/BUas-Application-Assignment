@@ -29,7 +29,4 @@ private:
 
 	int spawnedEnemiesAmount;
 	int diedEnemiesAmount;
-
-	sf::Texture enemyTexture;
 };
-

@@ -11,13 +11,10 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	this->speed = speed;
 	this->health = health;
 	this->shootCooldown = shootCooldown;
-	shootTimer = 0.0f;
+	shootCooldownTimer = 0.0f;
 	hitProtectionTimer = 0.0f;
 
-	isDead = false;
-
 	row = 0;
-	faceRight = true;
 
 	body.setSize(sf::Vector2f(85.0f, 85.0f));
 	body.setOrigin(body.getSize() /2.0f);
@@ -31,17 +28,18 @@ Player::~Player()
 
 void Player::Update(float deltaTime)
 {
-	//std::cout << "hitprotectiontimer: " << hitProtectionTimer << "\n";
+	//If the player has no more health, load the game over screen
 	if (health <= 0) {
 		UserInterface::getInstance().LoadGameOverScreen();
-		isDead = true;
 	}
+	//Count down the hit protection timer
 	if (hitProtectionTimer > 0) {
 		hitProtectionTimer -= deltaTime;
 	}
-	if(shootTimer > 0)
+	//Count down the shoot cooldown timer
+	if(shootCooldownTimer > 0)
 	{
-		shootTimer -= deltaTime;
+		shootCooldownTimer -= deltaTime;
 	}
 
 	if(velocity.x > 0)
@@ -58,8 +56,6 @@ void Player::Update(float deltaTime)
 	{
 		velocity.y += speed;
 	}
-	//velocity.x *= 0.5f;
-	//velocity.y *= 0.5f;
 
 	//Change the velocity of the player once a movement key has been pressed
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))) {
@@ -87,10 +83,10 @@ void Player::Update(float deltaTime)
 		}
 	}
 
-	//Throw a ball once the Spacebar key is pressed
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) & shootTimer <= 0) {
-		shootTimer = shootCooldown;
-		//Spawn a ball with the following information; Texture, Size, Position, Direction and the <vector>balls reference so that it can remove itself
+	//Throw a ball once the Spacebar key is pressed and the player is not on a cooldown anymore
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) & shootCooldownTimer <= 0) {
+		shootCooldownTimer = shootCooldown;
+		//Spawn a ball with the following information; Size, Position and the Direction
 		Spawner::getInstance().SpawnPlayerBall(sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), DirectionFromAnimationRow());
 	}
 
@@ -106,11 +102,9 @@ void Player::Update(float deltaTime)
 	//If you are walking to the right
 	if (velocity.x > 0.0f) {
 		row = 7;
-		//faceRight = true;
 	}
 	else if(velocity.x < 0.0f){
 		row = 3;
-		//faceRight = false;
 	}
 
 	//If you are walking to the left
@@ -122,7 +116,8 @@ void Player::Update(float deltaTime)
 	{
 		row = 5;
 	}
-	animation.Update(row, deltaTime, faceRight);
+
+	animation.Update(row, deltaTime);
 	body.setTextureRect(animation.uvRect);
 	body.move(velocity * deltaTime);
 }
@@ -144,7 +139,6 @@ void Player::OnCollision(sf::Vector2f direction)
 	if (direction.y < 0.0f) {
 		//Collision on the bottom
 		velocity.y = 0.0f;
-		//canJump = true;
 	}else if (direction.y > 0.0f) {
 		//Collision on the top
 		velocity.y = 0.0f;
@@ -153,6 +147,7 @@ void Player::OnCollision(sf::Vector2f direction)
 
 }
 
+//Translates the current animation of the player to the direction the ball should be going towards
 sf::Vector2f Player::DirectionFromAnimationRow()
 {
 	sf::Vector2f direction;

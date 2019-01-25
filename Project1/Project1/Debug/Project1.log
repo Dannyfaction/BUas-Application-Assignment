@@ -1,31 +1,83 @@
-﻿  Animation.cpp
-e:\github\buas application assignment\project1\project1\animation.cpp(12): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-e:\github\buas application assignment\project1\project1\animation.cpp(13): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-  Ball.cpp
+﻿  Ball.cpp
 e:\github\buas application assignment\project1\project1\ball.cpp(42): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
   Enemy.cpp
-e:\github\buas application assignment\project1\project1\enemy.cpp(71): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+e:\github\buas application assignment\project1\project1\enemy.cpp(75): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
           with
           [
               T=int
           ]
-e:\github\buas application assignment\project1\project1\enemy.cpp(72): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+e:\github\buas application assignment\project1\project1\enemy.cpp(76): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
           with
           [
               T=int
           ]
-  FontManager.cpp
-  GameEndText.cpp
-  Health.cpp
   HowToPlay.cpp
+  Player.cpp
+e:\github\buas application assignment\project1\project1\player.cpp(87): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+e:\github\buas application assignment\project1\project1\player.cpp(94): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+e:\github\buas application assignment\project1\project1\player.cpp(96): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  SpawnID.cpp
+  Spawner.cpp
+e:\github\buas application assignment\project1\project1\spawner.cpp(8): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\spawner.cpp(13): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\spawner.cpp(18): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\spawner.cpp(23): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\spawner.cpp(28): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\spawner.cpp(33): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\spawner.cpp(38): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\spawner.cpp(106): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\spawner.cpp(116): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\spawner.cpp(126): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\spawner.cpp(133): warning C4018: '<': signed/unsigned mismatch
+  TextureManager.cpp
+  UserInterface.cpp
+e:\github\buas application assignment\project1\project1\userinterface.cpp(6): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\userinterface.cpp(20): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\userinterface.cpp(24): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\userinterface.cpp(29): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\userinterface.cpp(34): warning C4018: '<': signed/unsigned mismatch
+  Wall.cpp
+  WaveData.cpp
+  WaveManager.cpp
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(59): warning C4018: '<=': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(78): warning C4018: '<': signed/unsigned mismatch
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(95): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(113): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(116): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(119): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\buas application assignment\project1\project1\wavemanager.cpp(122): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   WaveText.cpp
   main.cpp
 e:\github\buas application assignment\project1\project1\main.cpp(23): warning C4244: 'argument': conversion from 'const float' to 'unsigned int', possible loss of data

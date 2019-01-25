@@ -1,6 +1,5 @@
 #include "UserInterface.h"
 #include "Spawner.h"
-#include <iostream>
 
 void UserInterface::LoadUserInterface(sf::RenderWindow& window)
 {
@@ -59,15 +58,16 @@ void UserInterface::SpawnHealth()
 	}
 }
 
+//At the start of every wave, spawn a text above the center of the screen showing the current wave
 void UserInterface::SpawnWaveText(int currentWave)
 {
 	std::string message = "Wave " + std::to_string(currentWave);
 	sf::Color textColor = sf::Color::Red;
-	//Spawner::getInstance().SpawnWaveText(1, sf::Vector2f(0,0), message, textColor);
 	Spawner::getInstance().SpawnWaveText(50, Spawner::getInstance().player[0].body.getPosition() + textOffset, message, textColor);
 
 }
 
+//When there are no waves left, show the player that the game has been completed
 void UserInterface::SpawnGameEnd()
 {
 	std::string message = "You completed the game, congratulations!";

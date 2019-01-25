@@ -1,5 +1,7 @@
 #include "Spawner.h"
-#include <iostream>
+
+//This class is responsible for spawning/removing all the objects and saving them in a vector so that we are able to call them in other classes
+//It's also responsible for updating all the spawned objects every frame
 
 void Spawner::Update(float deltaTime)
 {

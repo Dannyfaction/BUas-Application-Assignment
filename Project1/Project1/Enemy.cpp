@@ -28,14 +28,18 @@ Enemy::~Enemy()
 
 void Enemy::Update(float deltaTime)
 {
-	shootCooldownTimer += deltaTime;
+	//Count down the shoot cooldown timer
+	if (shootCooldownTimer > 0) {
+		shootCooldownTimer -= deltaTime;
+	}
 
+	//Count down the hit protection timer
 	if (hitProtectionTimer > 0) {
 		hitProtectionTimer -= deltaTime;
 	}
 
-	//Once the enemy is not on shootcooldown anymore, shoot a snowball
-	if (shootCooldownTimer >= shootCooldown) {
+	//Once the enemy is not on shootcooldown anymore, throw a snowball
+	if (shootCooldownTimer <= 0) {
 
 		//The direction the ball is going to be 'thrown' in
 		target = Spawner::getInstance().player[0].body;
@@ -49,7 +53,7 @@ void Enemy::Update(float deltaTime)
 		Spawner::getInstance().SpawnEnemyBall(sf::Vector2f(25.0f, 25.0f), sf::Vector2f(body.getPosition().x, body.getPosition().y), targetDirection);
 
 		//Reset the cooldown timer
-		shootCooldownTimer = 0;
+		shootCooldownTimer = shootCooldown;
 	}
 
 	if (health <= 0) {

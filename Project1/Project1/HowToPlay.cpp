@@ -25,6 +25,7 @@ void HowToPlay::Draw(sf::RenderWindow & window)
 void HowToPlay::Update(float deltaTime)
 {
 	lifetime += deltaTime;
+	//After a few seconds, remove the How To Play tooltip
 	if (lifetime >= maxLifetime) {
 		Spawner::getInstance().RemoveHowToPlay();
 	}

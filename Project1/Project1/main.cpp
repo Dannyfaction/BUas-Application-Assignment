@@ -26,6 +26,7 @@ int main()
 	TextureManager::getInstance().LoadTextures();
 	FontManager::getInstance().LoadFonts();
 
+	//Spawn the player with the following information: Texture, Imagecount(of the texture), switchtime (animation speed), movementspeed, health and shootcooldown.
 	Spawner::getInstance().SpawnPlayer(TextureManager::getInstance().GetPlayerTexture(), sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
 
 	UserInterface::getInstance().LoadUserInterface(window);
@@ -34,6 +35,7 @@ int main()
 	float backgroundCenterXOffset = backgroundColumns * 500.0f / 2.0F;
 	float backgroundCenterYOffset = backgroundRows * 500.0f / 2.0F;
 
+	//Spawn multiple instances of the background texture to fill up the playing field
 	for (int i = 0; i < backgroundRows; i++)
 	{
 		for (int j = 0; j < backgroundColumns; j++)
@@ -42,27 +44,16 @@ int main()
 		}
 	}
 
+	//Spawn 4 "ice" walls all around the center of the playing field
 	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(0.0f, -400.0f), false);
 	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(0.0f, 400.0f), false);
 	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(-400.0f, 0.0f), true);
 	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(400.0f, 0.0f), true);
 
 	Spawner::getInstance().SpawnWaveManager(Spawner::getInstance().player[0].body);
-	//WaveManager waveManager();
 
 	float deltaTime = 0.0f;
 	sf::Clock clock;
-
-	/*sf::Vector2u textureSize = playerTexture.getSize();
-	textureSize.x /= 3;
-	textureSize.y /= 9;
-
-
-	player.setTextureRect(sf::IntRect(textureSize.x * 2, textureSize.y * 8, textureSize.x, textureSize.y));
-	*/
-
-	//player.setFillColor(sf::Color::Red);
-	//player.setOrigin(player.getSize().x/2, player.getSize().y/2);
 
 	while (window.isOpen()) {
 		deltaTime = clock.restart().asSeconds();
@@ -81,47 +72,44 @@ int main()
 				break;
 			}
 		}
-		if (!Spawner::getInstance().player[0].GetDeadState() && Spawner::getInstance().gameEndText.size() <= 0){
+		//If the game has not ended yet, update all of the spawned classes and User interface
+		if (Spawner::getInstance().gameOverScreen.size() <= 0 && Spawner::getInstance().gameEndText.size() <= 0){
 			Spawner::getInstance().Update(deltaTime);
 			UserInterface::getInstance().UpdateUserInterface(window);
 		}
 
 		sf::Vector2f direction;
 
+		//Check if the player collides with any of the walls
 		for (Wall& wall : Spawner::getInstance().walls)
 		{
 			if (wall.GetCollider().CheckCollision(Spawner::getInstance().player[0].GetCollider(), direction, 1.0f)) {
+				//Push the player back into the direction it came from
 				Spawner::getInstance().player[0].OnCollision(direction);
 			}
 		}
 
-
+		//Lock the view onto the player
 		view.setCenter(Spawner::getInstance().player[0].GetPosition());
 
-		//player.setTextureRect(animation.uvRect);
 
-		/*
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-			player.setPosition((float)mousePos.x, static_cast<float>(mousePos.y));
-
-		}
-		*/
-
+		//Check if the enemy's snowballs collide with the player
 		for (Ball& ball : Spawner::getInstance().enemyBalls) {
 			if (ball.GetCollider().CheckCollision(Spawner::getInstance().player[0].GetCollider(), direction, 0.0f)) {
-				//Spawner::getInstance().player[0].OnCollision(direction);
+				//If the player is not under 'hit protection', reduce the health of the player on the UI
 				if (Spawner::getInstance().player[0].hitProtectionTimer <= 0) {
 					Spawner::getInstance().ReduceHealth();
 				}
+				//Reduce the health of the object that is hit and remove the snowball
 				ball.OnCollision(direction, Spawner::getInstance().player[0].health, Spawner::getInstance().player[0].hitProtectionTimer);
 			}
 		}
+		//Check if the player's snowballs collide with an enemy
 		for (Ball& ball : Spawner::getInstance().playerBalls) {
 			for (Enemy& enemy : Spawner::getInstance().enemies)
 			{
 				if (ball.GetCollider().CheckCollision(enemy.GetCollider(), direction, 0.0f)) {
-					//player.OnCollision(direction);
+					//Reduce the health of the object that is hit and remove the snowball
 					ball.OnCollision(direction, enemy.health, enemy.hitProtectionTimer);
 				}
 			}

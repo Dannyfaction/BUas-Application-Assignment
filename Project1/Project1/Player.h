@@ -21,7 +21,6 @@ public:
 
 	sf::Vector2f GetPosition() {return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
-	bool GetDeadState() { return isDead; }
 
 private:
 	int spawnID;
@@ -30,14 +29,9 @@ private:
 	Animation animation;
 	unsigned int row;
 	float speed;
-	bool faceRight;
 
 	sf::Vector2f velocity;
-	bool canJump;
 
 	float shootCooldown;
-	float shootTimer;
-
-	bool isDead;
+	float shootCooldownTimer;
 };
-

@@ -14,8 +14,6 @@ WaveManager::WaveManager(sf::RectangleShape &playerBody) : playerBody(playerBody
 	waveCooldown = 0.0f;
 	diedEnemiesAmount = 0;
 
-	enemyTexture.loadFromFile("Textures/Enemy_EditedV2.0.png");
-
 	SetWaveData();
 	NextWave();
 }
@@ -32,6 +30,7 @@ void WaveManager::Update(float deltaTime)
 	elapsedTimeSinceLastEnemy += deltaTime;
 	SpawnWave();
 
+	//If all the enemies have died of the current wave, go the next wave
 	if (diedEnemiesAmount >= waveDatas[currentWave - 1].amountOfEnemies) {
 		NextWave();
 	}
@@ -85,7 +84,6 @@ void WaveManager::NextWave()
 		UserInterface::getInstance().SpawnWaveText(currentWave);
 	}
 	else {
-		//spawn finish
 		UserInterface::getInstance().SpawnGameEnd();
 	}
 }
@@ -102,12 +100,13 @@ void WaveManager::SpawnEnemy()
 	int randomEnemyPosition = std::rand() % 600 + -300;
 
 	int health = waveDatas[currentWave - 1].health;
-	//Randomize the shootcooldown a little bit so all the enemies won't shoot at the same time
+	//Randomize the shootcooldown a little bit so not all of the enemies will shoot at the same time/interval
 	float minimumEnemyShootCooldown = waveDatas[currentWave - 1].shootCooldown - 0.25f;
 	float maximumEnemyShootCooldown = waveDatas[currentWave - 1].shootCooldown + 0.25f;
 	//Following formula taken from a Stackoverflow answer https://stackoverflow.com/questions/686353/random-float-number-generation
 	float randomizedEnemyShootCooldown = minimumEnemyShootCooldown + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (maximumEnemyShootCooldown - minimumEnemyShootCooldown)));
 
+	//Decides on which of the 4 sides the enemy spawns
 	switch(randomEnemyDirection)
 	{
 	case 1:
@@ -124,7 +123,6 @@ void WaveManager::SpawnEnemy()
 		break;
 	}
 
-	//Spawn an enemy with the following information; Texture, Position, Direction, health, ShootCooldown and ShootTarget
-	//spawnedEnemies.push_back(Enemy(&enemyTexture, sf::Vector2u(1,4), enemyPosition, randomEnemyDirection, health, randomizedEnemyShootCooldown, playerBody));
+	//Spawn an enemy with the following information; Position, Direction, health and ShootCooldown
 	Spawner::getInstance().SpawnEnemy(sf::Vector2u(1, 4), enemyPosition, randomEnemyDirection, health, randomizedEnemyShootCooldown);
 }
