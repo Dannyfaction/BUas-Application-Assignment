@@ -10,8 +10,8 @@ public:
 		return instance;
 	}
 
-	void LoadUserInterface(sf::RenderWindow& window);
-	void UpdateUserInterface(sf::RenderWindow& window);
+	void LoadUserInterface(sf::View& view);
+	void UpdateUserInterface(sf::View& view);
 	void LoadGameOverScreen();
 
 	void SpawnHowToPlay();

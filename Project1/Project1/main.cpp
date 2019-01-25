@@ -29,7 +29,7 @@ int main()
 	//Spawn the player with the following information: Texture, Imagecount(of the texture), switchtime (animation speed), movementspeed, health and shootcooldown.
 	Spawner::getInstance().SpawnPlayer(TextureManager::getInstance().GetPlayerTexture(), sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
 
-	UserInterface::getInstance().LoadUserInterface(window);
+	UserInterface::getInstance().LoadUserInterface(view);
 	float const backgroundRows = 5;
 	float const backgroundColumns = 5;
 	float backgroundCenterXOffset = backgroundColumns * 500.0f / 2.0F;
@@ -75,7 +75,7 @@ int main()
 		//If the game has not ended yet, update all of the spawned classes and User interface
 		if (Spawner::getInstance().gameOverScreen.size() <= 0 && Spawner::getInstance().gameEndText.size() <= 0){
 			Spawner::getInstance().Update(deltaTime);
-			UserInterface::getInstance().UpdateUserInterface(window);
+			UserInterface::getInstance().UpdateUserInterface(view);
 		}
 
 		sf::Vector2f direction;
