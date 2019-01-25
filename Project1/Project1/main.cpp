@@ -8,6 +8,7 @@
 #include "TextureManager.h"
 #include "FontManager.h"
 #include "UserInterface.h"
+#include "GameState.h"
 
 static const float VIEW_WIDTH = 900.0f;
 static const float VIEW_HEIGHT = 900.0f;
@@ -26,10 +27,12 @@ int main()
 	TextureManager::getInstance().LoadTextures();
 	FontManager::getInstance().LoadFonts();
 
-	//Spawn the player with the following information: Texture, Imagecount(of the texture), switchtime (animation speed), movementspeed, health and shootcooldown.
-	Spawner::getInstance().SpawnPlayer(TextureManager::getInstance().GetPlayerTexture(), sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
-
 	UserInterface::getInstance().LoadUserInterface(view);
+	Gamestate::getInstance().StartGame();
+	//Spawner::getInstance().SpawnPlayer(TextureManager::getInstance().GetPlayerTexture(), sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
+
+	Spawner::getInstance().SpawnWaveManager(Spawner::getInstance().player[0].body);
+
 	float const backgroundRows = 5;
 	float const backgroundColumns = 5;
 	float backgroundCenterXOffset = backgroundColumns * 500.0f / 2.0F;
@@ -49,8 +52,6 @@ int main()
 	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(0.0f, 400.0f), false);
 	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(-400.0f, 0.0f), true);
 	Spawner::getInstance().SpawnWall(TextureManager::getInstance().GetWallTexture(), sf::Vector2f(875.0f, 100.0f), sf::Vector2f(400.0f, 0.0f), true);
-
-	Spawner::getInstance().SpawnWaveManager(Spawner::getInstance().player[0].body);
 
 	float deltaTime = 0.0f;
 	sf::Clock clock;
@@ -77,6 +78,9 @@ int main()
 			Spawner::getInstance().Update(deltaTime);
 			UserInterface::getInstance().UpdateUserInterface(view);
 		}
+		else if(Spawner::getInstance().gameOverScreen.size() > 0){
+			Spawner::getInstance().gameOverScreen[0].Update(deltaTime);
+		}
 
 		sf::Vector2f direction;
 
@@ -91,7 +95,6 @@ int main()
 
 		//Lock the view onto the player
 		view.setCenter(Spawner::getInstance().player[0].GetPosition());
-
 
 		//Check if the enemy's snowballs collide with the player
 		for (Ball& ball : Spawner::getInstance().enemyBalls) {

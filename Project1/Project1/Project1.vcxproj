@@ -132,6 +132,7 @@
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameEndText.cpp" />
     <ClCompile Include="GameOverScreen.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="HowToPlay.cpp" />
     <ClCompile Include="main.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameEndText.h" />
     <ClInclude Include="GameOverScreen.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="Health.h" />
     <ClInclude Include="HowToPlay.h" />
     <ClInclude Include="Spawner.h" />

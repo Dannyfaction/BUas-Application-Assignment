@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "SpawnID.h"
+#include "TextureManager.h"
 #include "Spawner.h"
 #include "UserInterface.h"
 

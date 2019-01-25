@@ -8,8 +8,9 @@ public:
 	WaveManager(sf::RectangleShape &playerBody);
 	~WaveManager();
 
+	void Initialize();
 	void Update(float deltaTime);
-	void IncreaseDiedEnemiesAmount() { diedEnemiesAmount++; };
+	void IncreaseDiedEnemiesAmount() { diedEnemiesAmount++; }
 
 private:
 	void SetWaveData();

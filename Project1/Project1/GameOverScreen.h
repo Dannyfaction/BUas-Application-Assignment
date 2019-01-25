@@ -8,6 +8,7 @@ public:
 	~GameOverScreen();
 
 	void Draw(sf::RenderWindow& window);
+	void Update(float deltaTime);
 
 	sf::RectangleShape body;
 };

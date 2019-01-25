@@ -1,6 +1,7 @@
 #include "GameOverScreen.h"
 #include "TextureManager.h"
-
+#include "GameState.h"
+#include <iostream>
 
 GameOverScreen::GameOverScreen(sf::Vector2f size, sf::Vector2f position)
 {
@@ -18,4 +19,12 @@ GameOverScreen::~GameOverScreen()
 void GameOverScreen::Draw(sf::RenderWindow & window)
 {
 	window.draw(body);
+}
+
+void GameOverScreen::Update(float deltaTime)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+		std::cout << "Retry";
+		Gamestate::getInstance().ResetGame();
+	}
 }

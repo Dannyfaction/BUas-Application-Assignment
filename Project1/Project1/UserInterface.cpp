@@ -1,6 +1,5 @@
 #include "UserInterface.h"
 #include "Spawner.h"
-
 #include <iostream>
 
 void UserInterface::LoadUserInterface(sf::View& view)
@@ -13,16 +12,15 @@ void UserInterface::LoadUserInterface(sf::View& view)
 	heartPosition = sf::Vector2f(topLeftScreenPosition.x + heartSize.x / 2 + heartOffset.x, topLeftScreenPosition.y + heartSize.y / 2 + heartOffset.y);
 
 	SpawnHowToPlay();
-	SpawnHealth();
 }
 
 //Function that gets called every frame to make sure that the UserInterface stays in place on the screen when the player moves around
 void UserInterface::UpdateUserInterface(sf::View& view)
 {
 	topLeftScreenPosition = -sf::Vector2f(view.getSize().x / 2, view.getSize().y / 2);
-	std::cout << "XY: " << topLeftScreenPosition.x << " " << topLeftScreenPosition.y << "\n";
 	heartPosition = sf::Vector2f(topLeftScreenPosition.x + heartSize.x / 2 + heartOffset.x, topLeftScreenPosition.y + heartSize.y / 2 + heartOffset.y);
 	sf::Vector2f heartPositionBasedOnPlayerPosition = heartPosition + Spawner::getInstance().player[0].body.getPosition();
+
 
 	for (int i = 0; i < Spawner::getInstance().health.size(); i++)
 	{
@@ -42,7 +40,7 @@ void UserInterface::UpdateUserInterface(sf::View& view)
 
 void UserInterface::LoadGameOverScreen()
 {
-	sf::Vector2f gameOverScreenSize = sf::Vector2f(800, 500);
+	sf::Vector2f gameOverScreenSize = sf::Vector2f(800, 700);
 	Spawner::getInstance().SpawnGameOverScreen(gameOverScreenSize, Spawner::getInstance().player[0].body.getPosition());
 }
 

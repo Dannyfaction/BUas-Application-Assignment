@@ -7,6 +7,19 @@
 
 WaveManager::WaveManager(sf::RectangleShape &playerBody) : playerBody(playerBody)
 {
+	SetWaveData();
+	Initialize();
+}
+
+
+WaveManager::~WaveManager()
+{
+
+}
+
+void WaveManager::Initialize()
+{
+	std::cout << "wavemanager initialized \n";
 	currentWave = 0;
 	elapsedTimeSinceLastWave = 0;
 	elapsedTimeSinceLastEnemy = 0;
@@ -14,14 +27,7 @@ WaveManager::WaveManager(sf::RectangleShape &playerBody) : playerBody(playerBody
 	waveCooldown = 0.0f;
 	diedEnemiesAmount = 0;
 
-	SetWaveData();
 	NextWave();
-}
-
-
-WaveManager::~WaveManager()
-{
-
 }
 
 void WaveManager::Update(float deltaTime)
@@ -122,6 +128,8 @@ void WaveManager::SpawnEnemy()
 		enemyPosition = sf::Vector2f(-500, randomEnemyPosition);
 		break;
 	}
+
+	std::cout << "spawned enemy at position: " << enemyPosition.x << " " << enemyPosition.y << "\n";
 
 	//Spawn an enemy with the following information; Position, Direction, health and ShootCooldown
 	Spawner::getInstance().SpawnEnemy(sf::Vector2u(1, 4), enemyPosition, randomEnemyDirection, health, randomizedEnemyShootCooldown);
