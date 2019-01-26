@@ -1,6 +1,5 @@
 #include "UserInterface.h"
 #include "Spawner.h"
-#include <iostream>
 
 void UserInterface::LoadUserInterface(sf::View& view)
 {

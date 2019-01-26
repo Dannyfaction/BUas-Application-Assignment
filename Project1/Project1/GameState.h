@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "WaveManager.h"
 
 class Gamestate
 {
@@ -21,7 +20,4 @@ private:
 public:
 	Gamestate(Gamestate const&) = delete;
 	void operator=(Gamestate const&) = delete;
-
-private:
-
 };

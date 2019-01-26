@@ -3,6 +3,8 @@
 #include "TextureManager.h"
 #include "UserInterface.h"
 
+//Class which is responsible for starting and restarting the game
+
 void Gamestate::StartGame()
 {
 	Spawner::getInstance().SpawnPlayer(TextureManager::getInstance().GetPlayerTexture(), sf::Vector2u(4, 8), 0.3f, 200.0f, 300, 1.0f);
