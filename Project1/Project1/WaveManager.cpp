@@ -1,5 +1,4 @@
 #include "WaveManager.h"
-#include <iostream>
 #include <random>
 #include "Spawner.h"
 #include "UserInterface.h"
@@ -19,7 +18,6 @@ WaveManager::~WaveManager()
 
 void WaveManager::Initialize()
 {
-	std::cout << "wavemanager initialized \n";
 	currentWave = 0;
 	elapsedTimeSinceLastWave = 0;
 	elapsedTimeSinceLastEnemy = 0;
@@ -128,8 +126,6 @@ void WaveManager::SpawnEnemy()
 		enemyPosition = sf::Vector2f(-500, randomEnemyPosition);
 		break;
 	}
-
-	std::cout << "spawned enemy at position: " << enemyPosition.x << " " << enemyPosition.y << "\n";
 
 	//Spawn an enemy with the following information; Position, Direction, health and ShootCooldown
 	Spawner::getInstance().SpawnEnemy(sf::Vector2u(1, 4), enemyPosition, randomEnemyDirection, health, randomizedEnemyShootCooldown);
